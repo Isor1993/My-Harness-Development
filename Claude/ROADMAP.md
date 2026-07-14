@@ -13,7 +13,7 @@ und spezialisiert.
 1. [x] INDEX.md — Zuständigkeitskarte
 2. [x] ROADMAP.md — Baureihenfolge, was als Nächstes kommt
 3. [x] CLAUDE.md — minimale Version
-4. [ ] Übergabetest: frische Session im Ordner starten, nur fragen „Was ist der Stand, was kommt als Nächstes?" — stimmt die Antwort, wird ab dort weitergebaut
+4. [x] Übergabetest: frische Session im Ordner starten, nur fragen „Was ist der Stand, was kommt als Nächstes?" — bestanden am 2026-07-14
 5. [ ] DOC_RULES.md — Pflegeregeln ausarbeiten
 6. [ ] WORKFLOW.md — Session-Disziplin
 7. [ ] CLAUDE.md — voll ausarbeiten

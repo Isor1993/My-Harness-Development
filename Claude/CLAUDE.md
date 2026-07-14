@@ -13,6 +13,8 @@ sind Wegwerf-Arbeitsräume.
 ## Regeln
 - Jede Datei besitzt genau eine Zuständigkeit (INDEX.md). Nichts in
   fremde Dateien schreiben, keine neuen Dateien ohne INDEX-Eintrag.
+- Vor jedem Anlegen oder Ändern einer Datei: zuerst INDEX.md lesen und
+  prüfen, wem der Inhalt gehört.
 - Vor jedem /clear bzw. Session-Ende: INDEX.md und ROADMAP.md
   aktualisieren, wenn sich etwas geändert hat.
 - Aktueller Stand, geplantes Verhalten und mögliche Erweiterung immer
