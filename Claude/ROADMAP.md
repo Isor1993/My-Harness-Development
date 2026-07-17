@@ -1,7 +1,7 @@
 # ROADMAP.md — Baureihenfolge
 
-Ownership: Nur Baureihenfolge. Was fertig ist, steht später im
-FEATURE_LOG.md, Begründungen in DECISIONS.md — nie hier.
+Ownership: Nur Baureihenfolge. Was fertig ist, steht im FEATURE_LOG.md,
+Begründungen in DECISIONS.md — nie hier.
 
 ## Grobziel
 Generischer Harness für Game-Dev-Projekte und Brainstorm-/Learn-Sessions:
@@ -9,18 +9,25 @@ Generischer Harness für Game-Dev-Projekte und Brainstorm-/Learn-Sessions:
 entwickelt und getestet, später pro Projekt (z.B. Isor's Tower) kopiert
 und spezialisiert.
 
-## Reihenfolge
-1. [x] INDEX.md — Zuständigkeitskarte
-2. [x] ROADMAP.md — Baureihenfolge, was als Nächstes kommt
-3. [x] CLAUDE.md — minimale Version
-4. [x] Übergabetest: frische Session im Ordner starten, nur fragen „Was ist der Stand, was kommt als Nächstes?" — bestanden am 2026-07-14
-5. [ ] DOC_RULES.md — Pflegeregeln ausarbeiten
-6. [ ] WORKFLOW.md — Session-Disziplin
-7. [ ] CLAUDE.md — voll ausarbeiten
-8. [ ] FEATURE_LOG, DECISIONS, GLOSSARY, CODE_GUIDELINES anlegen
-9. [ ] GDD_RULES.md — Regeln für GDD.md
-10. [ ] GDD.md — Game Design Document des Projekts
-11. [ ] KNOWLEDGE_RULES.md — Schreibregeln + Archivierungsablauf
-12. [ ] KNOWLEDGE.md — Puffer für Gelerntes, wird ins externe Archiv ausgelagert
-13. [ ] Praxistest in Claude Code, dann nachschärfen
-14. [ ] Erweiterung: Knowledge-Archivierung automatisieren (Befehl/Skill) — erst nach Praxistest
+## Nahziel (Stand 2026-07-17)
+Der Harness ist minimal einsatzbereit. Ab 2026-07-18 Uni-Betrieb:
+Terrain- und Mesh-Generation samt Bestückung, Abgabe ca. 2026-07-28.
+Ausgearbeitet wird nur noch, was der Praxisbetrieb verlangt.
+
+## Erledigt
+- [x] Kern: INDEX.md, ROADMAP.md, CLAUDE.md (minimal), Übergabetest
+  (2026-07-14)
+- [x] WORKFLOW.md: Grundregeln + alle vier Session-Typen (Brainstorm im
+  Einsatz, Rest minimal) (2026-07-17)
+- [x] Knowledge-System: externer Ordner `C:\Repos Isor\Knowledge\` +
+  KNOWLEDGE_RULES.md (2026-07-17)
+- [x] FEATURE_LOG.md + DECISIONS.md angelegt (2026-07-17)
+
+## Als Nächstes
+1. [ ] Praxistest: Uni-Betrieb ab 2026-07-18, Harness dabei nachschärfen
+2. [ ] CODE_GUIDELINES.md — beim ersten Development-Einsatz anlegen,
+   mit Uni-Normen füllen
+
+## Später (nur bei Bedarf)
+- DOC_RULES.md, CLAUDE.md voll ausarbeiten, GLOSSARY.md,
+  GDD_RULES.md + GDD.md, Knowledge-Archivierung automatisieren

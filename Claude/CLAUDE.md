@@ -9,6 +9,7 @@ sind Wegwerf-Arbeitsräume.
 1. Diese Datei
 2. INDEX.md — welche Dokumente existieren, was besitzt jedes
 3. ROADMAP.md — wo stehen wir, was kommt als Nächstes
+4. WORKFLOW.md — Session-Typen und Session-Disziplin
 
 ## Regeln
 - Jede Datei besitzt genau eine Zuständigkeit (INDEX.md). Nichts in
