@@ -8,7 +8,12 @@ Ownership: Session-Typen und Session-Disziplin.
   Gebautes in FEATURE_LOG.md, Entscheidungen in DECISIONS.md;
   Knowledge-Abfrage in jeder Session (KNOWLEDGE_RULES.md), im
   Uni-Modus Pflicht; TDD-relevante Ergebnisse grob in TDD_NOTES.md
-  einreihen (Uni-Projekt).
+  einreihen (nur echte Uni-Projekt-Arbeit).
+- Session-Ende: Claude schlägt den Commit vor — Titel im Schema
+  `Update V <nächste Nummer>` (vierstellig hochgezählt, z. B. V 0.0003)
+  plus fertige Description (was die Session geändert hat). Titel und
+  Description immer auf Englisch — das Repo ist englischsprachig.
+  Isor committet selbst über sein Git-Tool.
 - Max. 2–4 parallel offene Sessions.
 
 ## Session-Typen
