@@ -39,3 +39,5 @@ Ausgearbeitet wird nur noch, was der Praxisbetrieb verlangt.
   Laufzeit-Container) — eigene Design-Session, wenn es ansteht
 - ClaudeSetup-artiges Editor-Setup-Script — erst wenn Isor sicher
   programmiert (Lernphase: Isor tippt selbst)
+- Harness-Dokumente auf Englisch umstellen — prüfen, ob das in der
+  Praxis besser funktioniert (Unterhaltung darf deutsch bleiben)

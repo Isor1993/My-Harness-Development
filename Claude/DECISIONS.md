@@ -43,6 +43,24 @@ Warum: Entspricht den Einsatzkriterien des Dozenten selbst; Isor ist in
 der Lernphase und will selbst schreiben, um besser zu werden.
 Verworfen: Patterns als Pflicht für jedes System; ClaudeSetup jetzt schon.
 
+## 2026-07-17 — Session-Ende-Rituale erweitert
+Was: Knowledge-Abfrage in jeder Session (Uni-Modus: Pflicht);
+Commit-Vorschlag durch Claude (Titel `Update V <nächste Nummer>` +
+Description), Isor committet selbst; TDD_NOTES.md als Stoffsammlung
+fürs Uni-TDD — nur echte Uni-Projekt-Arbeit, keine Harness-Arbeit.
+Warum: Erkenntnisse und Commit-Historie gingen sonst beim /clear
+verloren; Isor will Commit-Texte nicht selbst formulieren; das TDD ist
+Uni-Abgabe (ca. 2026-07-28) und braucht laufendes Rohmaterial.
+Verworfen: Knowledge-Abfrage nur im Uni-Modus; Commits durch Claude.
+
+## 2026-07-17 — Sprache: Code englisch, Unterhaltung deutsch
+Was: Code, Kommentare, Debug-Ausgaben und Commit-Messages ausnahmslos
+Englisch; Harness-Doku und Unterhaltung mit Claude vorerst Deutsch.
+Warum: GitHub-Repo ist englischsprachig, Fachbegriffe bleiben konsistent
+mit der Unity-/C#-Welt; Deutsch hilft beim Lernen.
+Verworfen: Sprachwahl je Situation; sofortige Englisch-Umstellung des
+Harness (geparkt in ROADMAP „Später").
+
 ## 2026-07-17 — Minimalistisch zur Einsatzreife
 Was: Alle vier Session-Typen nur minimal definiert; ausgearbeitet wird
 erst, wenn der Praxisbetrieb es verlangt. Regel-Dateien beschreiben nur

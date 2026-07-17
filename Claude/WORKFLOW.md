@@ -40,7 +40,7 @@ Ergebnis: Entscheidungen in DECISIONS.md, Design-Absicht später ins GDD.
 Die eigentliche Entwicklung; läuft, bis die nächste Runde startet.
 Vor dem Coden: Review-Gate aus CODE_GUIDELINES.md durchgehen.
 Gebautes in FEATURE_LOG.md, Entscheidungen in DECISIONS.md.
-Commit-Message als Vorschau zeigen, bevor committet wird.
+Commits: siehe Grundregel „Session-Ende".
 
 ### Art (minimal, ungetestet)
 Prompts für Image-Generation/Concepts erzeugen — bildliche Kommunikation

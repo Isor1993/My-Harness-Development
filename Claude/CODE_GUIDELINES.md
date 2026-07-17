@@ -30,6 +30,45 @@ Bei Uni-Projekten gewinnt Block 1 im Konfliktfall, bei privaten Block 2.
 8. Namespaces und Ordner strukturieren das Projekt.
 9. Nicht Spezifiziertes: Microsoft-C#-Konventionen bzw. Unity-Style-Guide.
 
+## Kommentare & Datei-Header (Isors Standard)
+Gilt überall, Uni wie privat. Code, Kommentare und Ausgaben: **immer
+Englisch** — keine Ausnahme; erfüllt damit die SAE-Kommentar-Regeln
+(Block 1, Regel 1–2). Deutsch bleibt nur der Unterhaltung mit Claude
+vorbehalten.
+
+### Datei-Header
+Jede .cs-Datei beginnt mit diesem Block:
+
+    /*****************************************************************************
+    * Project : <Unity-Projektname>
+    * File    : <Dateiname>.cs
+    * Date    : <TT.MM.JJJJ — Erstelldatum>
+    * Author  : Eric Rosenberg
+    *
+    * Description :
+    * <Was die Klasse macht und wofür sie zuständig ist, 2–5 Zeilen.>
+    *
+    * History :
+    * <TT.MM.JJJJ> ER Created
+    ******************************************************************************/
+
+History: pro nennenswerter Änderung eine neue Zeile `<Datum> ER <Was>`.
+
+### Summaries
+- XML-`<summary>` über jeder Klasse, jedem Enum, jeder Methode und
+  jedem public Property/Event.
+- Ausnahme: Unitys Standard-Eventmethoden (`Awake`, `Start`, `Update`,
+  `OnEnable` …) brauchen keine.
+- Methoden mit Parametern oder Rückgabewert: `<param>` / `<returns>`
+  ergänzen.
+
+### Inspector-Felder
+- Jedes serialisierte Feld bekommt ein `[Tooltip]` — was es ist und
+  wofür es benutzt wird.
+- Zusammengehörige Felder mit `[Header("...")]` gruppieren; Wertebereiche
+  mit `[Range]` o. Ä. absichern. Ziel: Der Inspector ist ohne Blick in
+  den Code verständlich.
+
 ## Block 2 — Architektur & Unity-Praxis (eigene Auswahl)
 Quelle: Code-Rules des Dozenten (v2.2), gefiltert im Brainstorm 2026-07-17.
 
