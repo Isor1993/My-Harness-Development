@@ -5,8 +5,10 @@ Ownership: Session-Typen und Session-Disziplin.
 ## Grundregeln
 - Jede Session hat genau einen Typ und einen Fokus.
 - Vor jedem /clear: Doku-Pflicht — INDEX.md und ROADMAP.md nachziehen,
-  Gebautes in FEATURE_LOG.md, Entscheidungen in DECISIONS.md,
-  im Uni-Modus zusätzlich Knowledge nach KNOWLEDGE_RULES.md.
+  Gebautes in FEATURE_LOG.md, Entscheidungen in DECISIONS.md;
+  Knowledge-Abfrage in jeder Session (KNOWLEDGE_RULES.md), im
+  Uni-Modus Pflicht; TDD-relevante Ergebnisse grob in TDD_NOTES.md
+  einreihen (Uni-Projekt).
 - Max. 2–4 parallel offene Sessions.
 
 ## Session-Typen
@@ -31,6 +33,7 @@ Ergebnis: Entscheidungen in DECISIONS.md, Design-Absicht später ins GDD.
 
 ### Development (minimal, ungetestet)
 Die eigentliche Entwicklung; läuft, bis die nächste Runde startet.
+Vor dem Coden: Review-Gate aus CODE_GUIDELINES.md durchgehen.
 Gebautes in FEATURE_LOG.md, Entscheidungen in DECISIONS.md.
 Commit-Message als Vorschau zeigen, bevor committet wird.
 

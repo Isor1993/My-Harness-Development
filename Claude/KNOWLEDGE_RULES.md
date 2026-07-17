@@ -25,7 +25,9 @@ Warum extern: Wissen ist projektübergreifend.
   → zwei Dateien. Verweise zwischen Dateien als relative Markdown-Links.
 
 ## Wann wird geschrieben
-- Nur in Brainstorm-Sessions im Uni-Modus (siehe WORKFLOW.md).
+- Pflicht in Brainstorm-Sessions im Uni-Modus (siehe WORKFLOW.md).
+- Zusätzlich fragt Claude bei jedem Session-Ende — egal welcher Typ —
+  ob etwas als Knowledge behalten werden soll.
 - Gesammelt am Session-Ende vor /clear: Claude schlägt die Einträge vor,
   Isor entscheidet, was gespeichert wird.
 - Bestehende Datei zum selben Konzept: erweitern statt duplizieren.
