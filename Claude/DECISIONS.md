@@ -140,6 +140,19 @@ der einfachste Weg.
 Verworfen: UI Toolkit (mehr Boilerplate ohne Nutzen bei dieser Größe);
 Logik direkt im Fenster (Pattern wäre nur Etikett).
 
+## 2026-07-18 — Terrain-Material wohnt in der Config
+Was: TerrainConfig hält das Terrain-Material (leer = Default der aktiven
+Render-Pipeline); der Presenter weist es bei jedem Generate zu, nicht
+nur beim Anlegen des Objekts.
+Warum: Material ist eine Preset-Eigenschaft wie Seed/Größe — Config-
+Tausch wechselt Terrain und Look gemeinsam; Zuweisung pro Generate,
+damit Änderungen ohne Clear sichtbar werden. Built-in-Default-Diffuse
+rendert unter URP magenta (Signalfarbe für inkompatiblen Shader).
+Verworfen: Material-Feld im Tool-Fenster (zweite Quelle neben der
+Config); hartes Default-Diffuse; Auto-Regenerieren bei Config-Änderung
+(geparkt als spätere Checkbox — Performance beim Slider-Ziehen,
+Absichtsprinzip).
+
 ## 2026-07-17 — Minimalistisch zur Einsatzreife
 Was: Alle vier Session-Typen nur minimal definiert; ausgearbeitet wird
 erst, wenn der Praxisbetrieb es verlangt. Regel-Dateien beschreiben nur

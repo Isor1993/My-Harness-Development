@@ -29,3 +29,13 @@ Format: `- JJJJ-MM-TT — Feature (1–2 Sätze: was und wo)`
   TestMode + Config-Referenz (mit Null-Guards in Awake und Start).
   Geprüft: alle drei TestModes unverändert, Kurven-Biege-Test (Täler
   sichtbar flacher), Guard-Test.
+- 2026-07-18 — Terrain-Editor-Tool (MVP): TerrainToolWindow (EditorWindow,
+  Tools → Terrain Generator) + TerrainToolPresenter
+  (`Assets/Shared/MeshBuilder/Editor/`) — generiert, ersetzt und löscht
+  das Terrain im Edit Mode aus der TerrainConfig; Fehlbedienung per
+  DisabledScope + HelpBox abgefangen. Geprüft: 6-Punkte-Testplan inkl.
+  Ersetzen bei Seed-Wechsel und Editor-Neustart (Config-Referenz bleibt).
+- 2026-07-18 — TerrainConfig um Terrain-Material erweitert (leer =
+  Default-Material der aktiven Render-Pipeline); der Presenter weist es
+  bei jedem Generate zu, damit Material-Wechsel sofort greifen. Geprüft
+  mit eigenem URP-Lit-Material (Smoothness runter gegen Plastik-Look).

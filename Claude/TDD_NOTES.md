@@ -58,3 +58,16 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   Edit-Mode-Fallen: sharedMesh statt mesh, DestroyImmediate,
   [SerializeField] am Config-Feld (Serialisierungs-Bewertungspunkt).
   Liefert fürs TDD: Tool-Beschreibung + Stoff für UML-/Ablaufdiagramm.
+- 2026-07-18 — [Tools] Tool fertig und getestet (6-Punkte-Plan inkl.
+  Editor-Neustart). IMGUI-Kernmuster fürs TDD: Felder geben ihren neuen
+  Wert zurück (`_config = ObjectField(...)`), Buttons feuern nur im
+  Klick-Frame, DisabledScope sperrt per using-Klammer garantiert nur
+  seinen Bereich. typeof als Typ-Filter des ObjectFields.
+- 2026-07-18 — [Tools] URP-Lektion: Magenta = Shader inkompatibel mit
+  aktiver Pipeline; Built-in-Materials (Default-Diffuse) funktionieren
+  unter URP nicht → GraphicsSettings.currentRenderPipeline.defaultMaterial
+  als Fallback, eigentliches Material kommt aus der Config.
+- 2026-07-18 — [Tools] Bewusste Grenzen v1 (TDD-Kapitel „Erweiterungen"):
+  kein Undo für Generate/Clear; GameObject.Find sieht nur aktive Objekte;
+  Auto-Regenerate als Checkbox geparkt (Performance/Absichtsprinzip —
+  siehe DECISIONS 2026-07-18).
