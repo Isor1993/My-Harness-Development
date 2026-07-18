@@ -21,3 +21,11 @@ Format: `- JJJJ-MM-TT — Feature (1–2 Sätze: was und wo)`
   Regressions-Checks, Noise ruft den Generator), Noise- und
   Mesh-Parameter als Inspector-Felder mit [Min]/[Range]-Guards,
   Tooltips und Headern.
+- 2026-07-18 — TerrainConfig: ScriptableObject-Parameter-Object
+  (`Assets/Shared/MeshBuilder/`) mit allen Pipeline-Einstellwerten
+  (Heightmap/Noise/Mesh) plus neuer heightCurve (AnimationCurve, formt
+  das 0–1-Höhenprofil nach der Normalisierung um). Generator nimmt jetzt
+  die Config statt sechs Einzelparameter, TerrainPreview hält nur noch
+  TestMode + Config-Referenz (mit Null-Guards in Awake und Start).
+  Geprüft: alle drei TestModes unverändert, Kurven-Biege-Test (Täler
+  sichtbar flacher), Guard-Test.

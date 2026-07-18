@@ -93,6 +93,18 @@ int statt Vector2Int); fast alle Grenzen schützen vor Division durch
 null. Defaults nötig, weil [Min] still gespeicherte Werte nicht korrigiert.
 Verworfen: Guard-Klauseln/Exceptions im Generator.
 
+## 2026-07-18 — TerrainConfig flach, nur lesbar, Guard beim Aufrufer
+Was: TerrainConfig als ein flaches SO ([Header]-Gruppen, kein Nesting),
+Zugriff nur über Get-only-Properties (`=> _feld`); die Null-Prüfung der
+Referenz macht der Aufrufer (TerrainPreview in Awake und Start),
+nicht der Generator. MeshBuilder bleibt config-agnostisch (Primitive).
+Warum: Nesting/Setter ohne aktuellen Nutzen (YAGNI); Schreibzugriffe
+würden im Editor das Asset dauerhaft ändern; ein Guard im Generator käme
+nach dem ersten Zugriff zu spät und ein Ersatz-Array würde den Fehler
+verstecken — beim Aufrufer sitzt die vergessbare Inspector-Verdrahtung.
+Verworfen: verschachtelte [Serializable]-Unterklassen (Skizze vom
+16.07.), public Felder/Setter, Guard mit 1×1-Fallback im Generator.
+
 ## 2026-07-17 — Minimalistisch zur Einsatzreife
 Was: Alle vier Session-Typen nur minimal definiert; ausgearbeitet wird
 erst, wenn der Praxisbetrieb es verlangt. Regel-Dateien beschreiben nur

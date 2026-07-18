@@ -34,3 +34,12 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   Division durch null), lacunarity ≥ 1 (sonst kehren sich Oktaven um).
   Oktaven über ~6 bringen keinen sichtbaren Mehrwert (0.5⁹ ≈ 0,2 %),
   kosten aber linear Rechenzeit.
+- 2026-07-18 — [Architektur] TerrainConfig als ScriptableObject-Parameter-
+  Object: alle Pipeline-Einstellwerte in einem Asset, Konsumenten lesen
+  dieselbe Quelle (Get-only-Properties); mehrere Assets = tauschbare
+  Presets ohne Code-Change. Generator-Signatur: Generate(TerrainConfig).
+- 2026-07-18 — [Terrain] heightCurve (AnimationCurve): remappt das
+  normalisierte 0–1-Profil per Evaluate — nach der Oktaven-Normalisierung,
+  vor der Meter-Skalierung im MeshBuilder. x²-Intuition: jeder Wert „mal
+  sich selbst" → Täler sacken ab (0,2→0,04), Gipfel bleiben (0,9→0,81),
+  Terrain wird dramatischer. Verifiziert per Kurven-Biege-Test.
