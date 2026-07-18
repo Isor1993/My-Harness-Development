@@ -15,6 +15,9 @@ Ownership: Session-Typen und Session-Disziplin.
   Description immer auf Englisch — das Repo ist englischsprachig.
   Isor committet selbst über sein Git-Tool.
 - Max. 2–4 parallel offene Sessions.
+- Session-Schnitt an der Baustein-Grenze, nicht am Kontext-Balken:
+  Baustein fertig → Sichern → Commit → /clear. Einen neuen Baustein
+  nicht unter ~30 % Restkontext starten — lieber vorher schneiden.
 
 ## Session-Typen
 

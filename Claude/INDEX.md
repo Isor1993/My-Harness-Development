@@ -19,3 +19,5 @@ keine Inhalte. Status: ohne Vermerk = existiert, (geplant) = noch nicht gebaut.
 | GDD.md | (geplant) Design-Absicht des Spiels — das Game Design Document |
 | GDD_RULES.md | (geplant) Nur Schreib- und Pflegeregeln für GDD.md |
 | KNOWLEDGE_RULES.md | Schreib- und Ablageregeln für das externe Wissensarchiv `C:\Repos Isor\Knowledge\` |
+| ASSIGNMENT_PCG.md | Originaltext Uni-Aufgabe „Prozedurale Erweiterung der Spielwelt" (Referenz, unverändert lassen) |
+| ASSIGNMENT_TOOL.md | Originaltext Uni-Aufgabe „Engine-Tool-Entwicklung" (Referenz, unverändert lassen) |

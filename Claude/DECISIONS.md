@@ -105,6 +105,41 @@ verstecken — beim Aufrufer sitzt die vergessbare Inspector-Verdrahtung.
 Verworfen: verschachtelte [Serializable]-Unterklassen (Skizze vom
 16.07.), public Felder/Setter, Guard mit 1×1-Fallback im Generator.
 
+## 2026-07-18 — PCG- und Engine-Tool-Aufgabe kombiniert
+Was: Beide Uni-Aufgaben (ASSIGNMENT_PCG.md + ASSIGNMENT_TOOL.md) werden
+mit einem Projekt erfüllt: die Terrain-Pipeline als prozedurale
+Level-Generierung (PCG) plus ein Editor-Tool mit UI und mindestens einem
+Design Pattern obendrauf (Engine-Tool). Bestückung nutzt vorhandene
+Inhalte aus früheren Abgaben (Shader, Partikeleffekte wie
+Glühwürmchen/Fackeln, vorhandene KI) und leicht beschaffbare Assets
+(Haus fürs Start-Village, Bäume, Gras).
+Warum: Spart Zeit, ergibt ein zusammenhängendes Spielprojekt; die
+Aufgabenstellung erlaubt eigene Anwendungsfälle, Spawn-Inhalte sind frei
+wählbar.
+Verworfen: zwei getrennte Tools/Abgaben ohne gemeinsame Basis.
+
+## 2026-07-18 — Editor-Tool vor Platzierungs-Stufe
+Was: Reihenfolge bis Ende Juli: 1. minimales Editor-Tool, 2. Platzierung
+(Bäume/Gras → Village → Partikel), 3. Texturierung (erster
+Streichkandidat), 4. TDD + UML. Große Bausteine liegen auf Isors
+Wochenend-Fenstern.
+Warum: Das Tool beschleunigt jede spätere Iteration (Generieren im Edit
+Mode statt Play Mode), die Tool-Aufgabe ist formativ schon überfällig
+(Feedback einholbar), und es wächst mit jeder Stufe mit.
+Verworfen: erst Platzierung fertig bauen, dann das Tool drumherum.
+
+## 2026-07-18 — Terrain-Tool als MVP mit EditorWindow (IMGUI)
+Was: View `TerrainToolWindow` (EditorWindow, OnGUI/IMGUI), Presenter
+`TerrainToolPresenter` (einzige Tool-Logik: prüfen, Pipeline rufen,
+Terrain-Objekt besitzen), Model = bestehende Pipeline unverändert.
+Beides in `Assets/Shared/MeshBuilder/Editor/`. Fehlbedienung:
+DisabledScope + HelpBox ohne Config; Neu-Generieren ersetzt das Objekt.
+Warum: Aufgabe verlangt ein MV-Pattern an echter Stelle; Einbahnstraßen-
+Abhängigkeit hält das Model testbar; IMGUI ist für ein kleines Fenster
+der einfachste Weg.
+Verworfen: UI Toolkit (mehr Boilerplate ohne Nutzen bei dieser Größe);
+Logik direkt im Fenster (Pattern wäre nur Etikett).
+
 ## 2026-07-17 — Minimalistisch zur Einsatzreife
 Was: Alle vier Session-Typen nur minimal definiert; ausgearbeitet wird
 erst, wenn der Praxisbetrieb es verlangt. Regel-Dateien beschreiben nur

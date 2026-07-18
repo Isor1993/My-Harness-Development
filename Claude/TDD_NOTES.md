@@ -43,3 +43,18 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   vor der Meter-Skalierung im MeshBuilder. x²-Intuition: jeder Wert „mal
   sich selbst" → Täler sacken ab (0,2→0,04), Gipfel bleiben (0,9→0,81),
   Terrain wird dramatischer. Verifiziert per Kurven-Biege-Test.
+- 2026-07-18 — [Planung] Ziel-Bild des kombinierten Tools (PCG + Engine-
+  Tool, siehe DECISIONS 2026-07-18): Terrain mit Bergen und Tälern,
+  später evtl. Straßen/Wege; Start-Village mit Haus-Asset am Spawnpunkt;
+  Bäume und Gras platzieren, an Flüssen passender Shader/Material;
+  vorhandene Partikeleffekte (Glühwürmchen, Fackeln) an ausgewählten
+  Stellen. Abgabe braucht zusätzlich: Tool-Beschreibung im TDD, UML-
+  Klassendiagramm, Ablaufdiagramm, mind. ein Design Pattern, Fehlbedienung
+  ausgeschlossen oder mit Nutzer-Feedback.
+- 2026-07-18 — [Tools] Terrain-Editor-Tool als MVP: View TerrainToolWindow
+  (EditorWindow, IMGUI), Presenter TerrainToolPresenter (prüft Config,
+  ruft Pipeline, besitzt „Generated Terrain"-Objekt), Model = bestehende
+  Pipeline unverändert. Fehlbedienung: Button-DisabledScope + HelpBox;
+  Edit-Mode-Fallen: sharedMesh statt mesh, DestroyImmediate,
+  [SerializeField] am Config-Feld (Serialisierungs-Bewertungspunkt).
+  Liefert fürs TDD: Tool-Beschreibung + Stoff für UML-/Ablaufdiagramm.

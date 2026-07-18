@@ -9,10 +9,16 @@ Generischer Harness für Game-Dev-Projekte und Brainstorm-/Learn-Sessions:
 entwickelt und getestet, später pro Projekt (z.B. Isor's Tower) kopiert
 und spezialisiert.
 
-## Nahziel (Stand 2026-07-17)
-Der Harness ist minimal einsatzbereit. Ab 2026-07-18 Uni-Betrieb:
-Terrain- und Mesh-Generation samt Bestückung, Abgabe ca. 2026-07-28.
-Ausgearbeitet wird nur noch, was der Praxisbetrieb verlangt.
+## Nahziel (Stand 2026-07-18)
+Der Harness ist minimal einsatzbereit. Uni-Betrieb läuft: Terrain- und
+Mesh-Generation samt Bestückung (ASSIGNMENT_PCG.md, kombiniert mit
+ASSIGNMENT_TOOL.md — siehe DECISIONS 2026-07-18).
+Termine: Die Einzeltermine der Aufgaben sind formative Abgaben
+(Richtlinie mit Puffer) — PCG formativ 2026-07-24, Engine-Tool war
+formativ 2026-07-10. Die echte Abgabe aller Module ist das Portfolio am
+2026-08-21. Isors eigenes Ziel: alles bis ca. Ende Juli fertig, damit
+der August Puffer für Bugs, Tests und Review bleibt.
+Ausgearbeitet wird am Harness nur noch, was der Praxisbetrieb verlangt.
 
 ## Erledigt
 - [x] Kern: INDEX.md, ROADMAP.md, CLAUDE.md (minimal), Übergabetest
@@ -29,8 +35,19 @@ Ausgearbeitet wird nur noch, was der Praxisbetrieb verlangt.
 1. [ ] Praxistest: Uni-Betrieb ab 2026-07-18, Harness dabei nachschärfen
 2. [ ] CODE_GUIDELINES.md beim ersten Development-Einsatz in der Praxis
    nachschärfen (Rohmaterial liegt vor)
-3. [ ] TDD für die Uni-Abgabe aus TDD_NOTES.md generieren
-   (vor ca. 2026-07-28)
+3. [ ] Uni: PCG + Engine-Tool fertigstellen — Editor-Tool (UI + Design
+   Pattern) und Platzierungs-Stufe (Ziel: Ende Juli)
+4. [ ] TDD für die Uni-Abgabe aus TDD_NOTES.md generieren (Ziel: Ende
+   Juli; Portfolio-Abgabe 2026-08-21)
+5. [ ] Uni: Threadoptimierung (K2, K3, S3; formativ 2026-08-07)
+6. [ ] Uni: Spiel-Kleinteile — Menü, Interaktion, evtl. Player Controller
+7. [ ] Uni: akademische Aufgabe — eine zusätzliche Quelle ergänzen
+8. [ ] Uni: Gras-Models aus Blender optimieren — zu viele Triangles
+   (Dozenten-Feedback, Performance-Risiko bei Massen-Platzierung durchs
+   PCG-Tool)
+9. [ ] Uni: Gesamt-Review des Projekts vor der Portfolio-Abgabe
+   (Bugs, Verbesserungen, Testen; bekannte halbfertige Stellen werden
+   beim PCG-Zusammenbau sichtbar und nach und nach gefixt)
 
 ## Später (nur bei Bedarf)
 - DOC_RULES.md, CLAUDE.md voll ausarbeiten, GLOSSARY.md,
