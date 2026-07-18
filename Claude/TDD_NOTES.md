@@ -21,3 +21,16 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   resettet den Inspector-Wert.
 - 2026-07-18 — [Architektur] Mesh komplett im Code statt Unity-Terrain
   oder Mesh-Asset (Begründung in DECISIONS 2026-07-18).
+- 2026-07-18 — [Terrain] HeightmapGenerator: statisch, oktavierter Perlin
+  Noise. Kernformeln: Amplitude = persistence^o, Frequenz = lacunarity^o
+  (per `*=` in der Schleife), Summe / Amplitudensumme → Ergebnis bleibt
+  0–1. Seed → System.Random → ein Offset pro Oktave
+  (Mathf.PerlinNoise ist seedlos).
+- 2026-07-18 — [Terrain] Verifikation über drei Tests: Determinismus
+  (gleicher Seed = gleiches Terrain), Seed-Variation (anderes Terrain),
+  Oktaven 1 vs. 6 (mehr Detail, gleiche Höhe — Beweis der Normalisierung).
+- 2026-07-18 — [Terrain] Parameter-Guards per [Min]/[Range] im Inspector:
+  resolution ≥ 2, noiseScale > 0, octaves ≥ 1 (alle drei verhindern
+  Division durch null), lacunarity ≥ 1 (sonst kehren sich Oktaven um).
+  Oktaven über ~6 bringen keinen sichtbaren Mehrwert (0.5⁹ ≈ 0,2 %),
+  kosten aber linear Rechenzeit.

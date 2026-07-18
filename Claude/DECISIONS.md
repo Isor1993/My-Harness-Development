@@ -77,6 +77,22 @@ Leser [x, z] benutzten; MeshBuilder setzt Quadrate voraus — ungültige
 Rechteck-Auflösungen sollen gar nicht erst einstellbar sein.
 Verworfen: freie Index-Reihenfolge pro Klasse; Vector2Int-Resolution.
 
+## 2026-07-18 — Reine statische Utilities erlaubt
+Was: MeshBuilder und HeightmapGenerator sind statische Klassen — die
+Regel „Keine Singletons/Statics" meint zustandsbehaftete Statics.
+Warum: Beide sind reine Funktionen ohne Zustand (Daten rein, Daten raus,
+testbar); eine Instanz hätte keinen Mehrwert.
+Verworfen: Instanz-Klassen hinter Interface (kein zweiter Use-Case — YAGNI).
+
+## 2026-07-18 — Wertebereiche an der Eingabe statt Laufzeit-Checks
+Was: Ungültige Parameter (resolution < 2, noiseScale 0, octaves 0,
+lacunarity < 1) verhindern [Min]/[Range] im Inspector; der Generator
+prüft nicht selbst. Jedes Feld bekommt zudem einen sinnvollen Default.
+Warum: Der falsche Wert soll gar nicht erst entstehen (gleiche Denke wie
+int statt Vector2Int); fast alle Grenzen schützen vor Division durch
+null. Defaults nötig, weil [Min] still gespeicherte Werte nicht korrigiert.
+Verworfen: Guard-Klauseln/Exceptions im Generator.
+
 ## 2026-07-17 — Minimalistisch zur Einsatzreife
 Was: Alle vier Session-Typen nur minimal definiert; ausgearbeitet wird
 erst, wenn der Praxisbetrieb es verlangt. Regel-Dateien beschreiben nur
