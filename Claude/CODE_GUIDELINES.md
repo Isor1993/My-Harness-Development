@@ -36,6 +36,10 @@ Englisch** — keine Ausnahme; erfüllt damit die SAE-Kommentar-Regeln
 (Block 1, Regel 1–2). Deutsch bleibt nur der Unterhaltung mit Claude
 vorbehalten.
 
+Arbeitsteilung: Isor tippt Code ohne Kommentare; Header, Summaries und
+Kommentare ergänzt Claude automatisch beim Review bzw. wenn Code
+geschrieben wurde (vereinbart 2026-07-18).
+
 ### Datei-Header
 Jede .cs-Datei beginnt mit diesem Block:
 

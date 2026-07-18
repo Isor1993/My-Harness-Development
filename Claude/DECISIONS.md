@@ -61,6 +61,22 @@ mit der Unity-/C#-Welt; Deutsch hilft beim Lernen.
 Verworfen: Sprachwahl je Situation; sofortige Englisch-Umstellung des
 Harness (geparkt in ROADMAP „Später").
 
+## 2026-07-18 — Terrain-Mesh komplett im Code
+Was: Kein Unity-Terrain und kein vormodelliertes Mesh-Asset — MeshBuilder
+erzeugt das Mesh vollständig aus der Heightmap.
+Warum: Höhen ändern sich pro Seed, Größe/Auflösung kommen aus der Config —
+ein Asset müsste trotzdem per Code verformt werden; MeshCollider braucht
+passende Geometrie; Mesh-Generierung ist Kern der Uni-Aufgabe.
+Verworfen: Unity-Terrain; unterteilte Plane als Basis-Asset.
+
+## 2026-07-18 — Heightmap-Konvention: [x, z], quadratisch, ein int
+Was: Erster Index = x, zweiter = z — projektweit für alle Heightmap-Zugriffe;
+Auflösung als einzelner int statt Vector2Int.
+Warum: Rampen-Test zeigte 90°-gedrehtes Terrain, weil Schreiber [z, x] und
+Leser [x, z] benutzten; MeshBuilder setzt Quadrate voraus — ungültige
+Rechteck-Auflösungen sollen gar nicht erst einstellbar sein.
+Verworfen: freie Index-Reihenfolge pro Klasse; Vector2Int-Resolution.
+
 ## 2026-07-17 — Minimalistisch zur Einsatzreife
 Was: Alle vier Session-Typen nur minimal definiert; ausgearbeitet wird
 erst, wenn der Praxisbetrieb es verlangt. Regel-Dateien beschreiben nur
