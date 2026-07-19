@@ -153,6 +153,41 @@ Config); hartes Default-Diffuse; Auto-Regenerieren bei Config-Änderung
 (geparkt als spätere Checkbox — Performance beim Slider-Ziehen,
 Absichtsprinzip).
 
+## 2026-07-18 — Platzierungs-Reihenfolge: Formen vor Reagieren
+Was: Schichten-Prinzip — erst was das Gelände formt, dann was darauf
+reagiert: 1. Plateau-Modifier (Village-Fläche), 2. Wasserspiegel
+(waterLevel + Ebene statt gegrabener Flüsse), 3. Haus/Village aufs
+Plateau, 4. Bepflanzung mit Regeln (Höhe/Steigung/Wassernähe/nicht auf
+Plateau), 5. Kür: echte Flüsse, Wege. Modifier schreiben in die
+Heightmap, Platzierung liest nur.
+Warum: Regeln wie „Gras am Wasser" brauchen Wasser als Input — von Isor
+selbst hergeleitet. Wasserspiegel liefert „wo ist Wasser" für einen
+Bruchteil der Kosten von Fluss-Carving; Straßen sind das Schwerste und
+stehen nicht in den Pflicht-Features.
+Verworfen: Bepflanzung zuerst (alte Empfehlung); Flüsse graben vor der
+Abgabe; Straßen als fester Bestandteil.
+
+## 2026-07-19 — Asset-Ordner: Kategorie + FolderTemplate, Shared nur bei mehreren Abnehmern
+Was: Bausteine liegen unter `Entities/`, `Environment/` oder `Systems/`
+je in eigenem Ordner mit Template-Unterordnern (nur die benötigten);
+`Shared/` nur für Querschnitts-Utilities mit mehreren Abnehmern. Regeln
+in CODE_GUIDELINES (Ordnerstruktur); Terrain-Pipeline entsprechend nach
+`Systems/TerrainGenerator` umgezogen.
+Warum: `Shared/MeshBuilder` war zum Feature-Ordner gewachsen — falsches
+Etikett; Isors Template-System existierte schon und funktioniert.
+Verworfen: alte Guideline-Zeile `Assets/Scripts/{System}/`; MeshBuilder
+in Shared lassen (nur ein Abnehmer — Zusammenhalten schlägt
+spekulatives Teilen).
+
+## 2026-07-19 — Pipeline-Klassen loggen nicht
+Was: Reine Pipeline-Funktionen (Generator, Modifier, MeshBuilder)
+bleiben still — kein Debug.Log, keine Warnings; Nutzer-Feedback ist
+Sache der Presenter-Schicht (StatusMessage im Tool).
+Warum: Radius 0 ist gewollter Aus-Schalter, kein Fehler; Logs in
+Zellen-Schleifen wären Spam; was nie geloggt wird, muss für die
+Uni-Abgabe nie entfernt werden.
+Verworfen: Warning bei Radius 0; Debug.Logs mit späterem Ausbau.
+
 ## 2026-07-17 — Minimalistisch zur Einsatzreife
 Was: Alle vier Session-Typen nur minimal definiert; ausgearbeitet wird
 erst, wenn der Praxisbetrieb es verlangt. Regel-Dateien beschreiben nur

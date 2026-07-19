@@ -39,3 +39,13 @@ Format: `- JJJJ-MM-TT — Feature (1–2 Sätze: was und wo)`
   Default-Material der aktiven Render-Pipeline); der Presenter weist es
   bei jedem Generate zu, damit Material-Wechsel sofort greifen. Geprüft
   mit eigenem URP-Lit-Material (Smoothness runter gegen Plastik-Look).
+- 2026-07-19 — Asset-Ordnerstruktur aufgeräumt: Terrain-Pipeline von
+  `Shared/MeshBuilder` nach `Systems/TerrainGenerator` (Scripts/Editor/
+  Materials/SO_Settings), Environment/ParticleEffects-Umbenennungen,
+  TutorialInfo entfernt. Umzug im Unity-Editor, Referenzen geprüft.
+- 2026-07-19 — PlateauModifier: statische Modifier-Stufe zwischen
+  HeightmapGenerator und MeshBuilder (`Systems/TerrainGenerator/Scripts/`),
+  plättet eine kreisförmige Fläche auf Zielhöhe mit Blend-Ring;
+  Radius 0 = aus. Plateau-Parameter als neue Config-Gruppe, im
+  Tool-Presenter eingehängt. Geprüft per 7-Punkte-Plan (Regression
+  Radius 0, Center-Verschiebung, Height-Extreme, Blend-Kante, Seed-Test).

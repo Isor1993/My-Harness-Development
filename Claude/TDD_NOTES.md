@@ -71,3 +71,29 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   kein Undo für Generate/Clear; GameObject.Find sieht nur aktive Objekte;
   Auto-Regenerate als Checkbox geparkt (Performance/Absichtsprinzip —
   siehe DECISIONS 2026-07-18).
+- 2026-07-19 — [Terrain/Shader] Bekannte Grenze Wasser-Shader (TDD-Kapitel
+  „Erweiterungen"): aktueller Shader läuft auf einer flachen Ebene in
+  eine Richtung — passend für den geplanten globalen Wasserspiegel
+  (Seen/Talwasser, siehe DECISIONS 2026-07-18), nicht für echte Flüsse
+  mit Flussbett-Kurven. Für Flüsse bräuchte es ein eigenes, entlang eines
+  Splines gebautes Mesh (Mesh-Baustein vor der Shader-Anpassung) — bleibt
+  Kür nach der formativen Abgabe, kein Shader-Nachbessern.
+- 2026-07-19 — [Terrain] PlateauModifier: Modifier-Stufe zwischen
+  Generator und MeshBuilder, schreibt in-place in die Heightmap.
+  Kernformeln: Position normiert auf 0–1 (x/(res−1), Cast Pflicht gegen
+  Integer-Division), Distanz zum Center via Vector2.Distance; drei Fälle:
+  innen → Zielhöhe, Ring → Lerp(PlateauHeight, original, t) mit
+  t = (dist − radius)/blend, außen → unangetastet. Lerp-Richtung: t=0 an
+  der Plateau-Kante = volle Plateauhöhe.
+- 2026-07-19 — [Architektur] Nicht-destruktive Pipeline: Modifier
+  schreiben vor dem Mesh-Build, danach ist die Heightmap read-only —
+  das Mesh ist ein Schnappschuss, keine Live-Verbindung (zwei
+  Wahrheitsquellen vermeiden). Änderungen gehen in die Quelldaten
+  (Config/Modifier), dann läuft die Pipeline komplett neu; Determinismus
+  (Seed) macht das Original jederzeit reproduzierbar — Löschen eines
+  Modifiers = Eintrag streichen + neu generieren.
+- 2026-07-19 — [Terrain] Plateau-Guards: radius Min(0) mit 0 als
+  gewolltem Aus-Schalter (kein Extra-Bool); blend Min(0.001) sichert die
+  Division in t ab — statt sich auf die Zweig-Reihenfolge zu verlassen
+  (gleiche Linie wie noiseScale: falscher Wert entsteht gar nicht erst).
+  Pipeline-Klassen loggen nicht (siehe DECISIONS 2026-07-19).

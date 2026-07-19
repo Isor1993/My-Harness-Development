@@ -157,7 +157,25 @@ Quelle: Code-Rules des Dozenten (v2.2), gefiltert im Brainstorm 2026-07-17.
   Absicht in eigenen Worten hinschreiben.
 - YAGNI: Abstraktion erst beim zweiten konkreten Use-Case.
 - Unity-6-APIs (`rb.linearVelocity`, nicht `rb.velocity`). 4 Spaces,
-  keine Tabs. Ordner: `Assets/Scripts/{System}/`.
+  keine Tabs.
+
+### Ordnerstruktur (Praxis-Stand 2026-07-19)
+- Jeder Baustein bekommt einen eigenen Ordner unter seiner Kategorie:
+  `Entities/<Name>/` (Spielfiguren), `Environment/<Name>/`
+  (Umgebungs-Assets), `Systems/<Name>/` (Code-Systeme, z.B.
+  `Systems/TerrainGenerator/`).
+- Unterordner nach `FolderTemplate/`: Animation, FBX, Materials,
+  Prefabs, Scripts, Shader, SO_Settings, Textures, VFX — aber nur
+  anlegen, was der Baustein wirklich braucht, keine leeren Ordner.
+- `Shared/` nur für echte Querschnitts-Utilities mit mehreren
+  Abnehmern (BaseScripts, Interfaces, Timer). Ein System mit einem
+  Abnehmer bleibt zusammen in seinem Systems-Ordner.
+- Editor-Code in einem Ordner, der wörtlich `Editor` heißt (Unity
+  kompiliert ihn editor-only und strippt ihn aus Builds); er darf
+  im System-Ordner liegen (z.B. `Systems/TerrainGenerator/Editor/`).
+- Ordnernamen Englisch, PascalCase. Umbenennen/Verschieben immer im
+  Unity-Editor, nie im Explorer — sonst brechen die .meta-GUIDs und
+  damit alle Referenzen.
 
 ### Review-Gate (vor dem Coden)
 Vor jeder Implementierung den Plan gegen diese Datei prüfen — Claude

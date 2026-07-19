@@ -8,7 +8,7 @@ Warum extern: Wissen ist projektübergreifend.
 
 ## Struktur
 - Unterordner = Themengruppen, wachsen nach Bedarf.
-  Bestand: `Patterns/`, `Unity/`, `ProcGen/`, `Seiten/`.
+  Bestand: `Patterns/`, `Unity/`, `ProcGen/`, `CSharp/`, `Seiten/`.
 - Eine .md-Datei pro Konzept. Dateiname: `klein-mit-bindestrichen.md`.
 - `Seiten/` enthält Offline-Kopien der Artifact-Seiten als eigenständige
   HTML-Dateien: `JJJJ-MM-TT-titel.html`.
