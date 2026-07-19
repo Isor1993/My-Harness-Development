@@ -115,6 +115,14 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   Platzierungs-Input (platzieren erst ab height > waterLevel + margin).
   0–1 statt Meter: Wasser skaliert mit der Karte, Uferlinie bleibt bei
   Multiplier-Änderungen exakt gleich.
+- 2026-07-19 — [Terrain] Chunk-Umbau umgesetzt und visuell verifiziert
+  (keine Geometrie-Nähte). Kernformeln: globaler Vertex-Index =
+  chunk × (chunkRes − 1) + lokal (Nachbarn teilen die Randreihe),
+  Weltposition = Index × MetersPerQuad; abgeleitete Config-Properties
+  (MetersPerQuad, ChunkSizeInMeters) halten die Formeln an einer Stelle.
+  Presenter: pro Generate kompletter Rebuild des Terrain-Roots — Reuse
+  hinterließe bei Chunk-Zahl-Wechsel verwaiste Kinder. ~1,06 Mio Verts
+  blockierend in einem Rutsch = Baseline-Messung für Threading-Abgabe.
 - 2026-07-19 — [Terrain] Platzierung entkoppelt von Auflösung: Objekte
   stehen in Weltkoordinaten (beliebige floats), die Heightmap ist nur
   das interpolierte Höhen-Nachschlagewerk (Mischung der Nachbarpunkte,

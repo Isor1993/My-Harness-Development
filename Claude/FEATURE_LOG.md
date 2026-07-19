@@ -49,3 +49,14 @@ Format: `- JJJJ-MM-TT — Feature (1–2 Sätze: was und wo)`
   Radius 0 = aus. Plateau-Parameter als neue Config-Gruppe, im
   Tool-Presenter eingehängt. Geprüft per 7-Punkte-Plan (Regression
   Radius 0, Center-Verschiebung, Height-Extreme, Blend-Kante, Seed-Test).
+- 2026-07-19 — Chunk-Umbau der Terrain-Pipeline: Welt 2048 m als 8×8
+  Chunks à 129 Vertices (2 m/Quad; 16×16 = 1 m/Quad rein per Inspector).
+  TerrainConfig mit chunksPerEdge/chunkResolution statt
+  heightmapResolution plus abgeleiteten Properties (MetersPerQuad,
+  ChunkSizeInMeters); Generator und PlateauModifier rechnen pro Chunk
+  und sampeln nach Weltposition (nahtlos, thread-tauglich); Presenter
+  baut pro Generate einen Terrain-Root mit einem Kind-Objekt je Chunk
+  komplett neu. Geprüft visuell: keine Geometrie-Nähte im Wireframe und
+  Game View, Plateau global korrekt platziert.
+- 2026-07-19 — TerrainPreview gelöscht (samt Szenen-Objekt): der
+  Test-Treiber ist durch das Editor-Tool abgelöst.
