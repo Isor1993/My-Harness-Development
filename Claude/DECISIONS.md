@@ -188,6 +188,50 @@ Zellen-Schleifen wären Spam; was nie geloggt wird, muss für die
 Uni-Abgabe nie entfernt werden.
 Verworfen: Warning bei Radius 0; Debug.Logs mit späterem Ausbau.
 
+## 2026-07-19 — Session-Typen: Brainstorm+Design ein Typ, 1:1-Regel
+Was: „Brainstorm/Design" ersetzt die zwei getrennten Typen; pro Baustein
+gilt: erst eine Brainstorm/Design-Session (was & wie), dann eine
+Development-Session (nur Umsetzung). Eine Design-Session darf mehrere
+Bausteine vorentscheiden.
+Warum: Design ohne Brainstorm-Anteil kam in der Praxis nie vor; die feste
+Reihenfolge gibt Isor einen klaren Schnitt zwischen Entscheiden und Bauen.
+Verworfen: vier getrennte Typen; freies Mischen von Design und Umsetzung
+in einer Session.
+
+## 2026-07-19 — Chunk-Terrain: 2048 m, Start 2 m/Quad, 8×8 à 129
+Was: Terrain wird in Chunks gebaut; Config bekommt chunksPerEdge +
+chunkResolution statt heightmapResolution. Welt 2048 m Kante, Start-
+Detail 2 m/Quad (8×8 Chunks à 129 Vertices); 1 m/Quad (16×16) bleibt
+reiner Inspector-Wechsel und wird visuell entschieden. Noise wird nach
+Weltposition gesampelt (nahtlose Chunks); Chunks rechnen unabhängig
+(thread-tauglich), optimiert wird erst am Schluss — die langsame Version
+ist die Baseline-Messung für die Threading-Abgabe (formativ 2026-08-07).
+Warum: 16-Bit-Meshes enden bei 65.535 Vertices — ein Einzelmesh kann
+2 km nicht in Gameplay-Detail (1–2 m/Quad) darstellen; Chunks liefern
+zudem Culling-Granularität. Platzierung erzwingt kein feines Raster:
+Objekte stehen in Weltkoordinaten, die Heightmap wird interpoliert
+abgefragt.
+Verworfen: Einzelmesh mit 32-Bit-Indizes (kein Culling, alles-oder-
+nichts-Regenerierung); 1 m/Quad sofort (4× Kosten bei jedem Tuning-
+Klick ohne sichtbaren Mehrwert); Threading jetzt (Messdaten fehlten).
+
+## 2026-07-19 — Wasserspiegel: Einheit, Schalter, Darstellung
+Was: waterLevel normalisiert 0–1 (verglichen nach der HeightCurve),
+_waterEnabled als explizites Bool, Darstellung als eine Plane auf
+waterLevel × heightMultiplier mit Isors vorhandenem Shader-Graph-
+Wassershader (_waterMaterial), OnValidate-Warnung wenn
+PlateauHeight <= WaterLevel, Uferstreifen-Margin kommt mit in die
+Config (visuell bewertet erst mit der Platzierungs-Stufe). Ergänzt
+DECISIONS 2026-07-18 „Formen vor Reagieren".
+Warum: 0–1 hält das Wasser im Verhältnis zur Karte — Multiplier-
+Änderungen verschieben die Uferlinie nicht; das Bool erhält den
+eingestellten Level beim Ausschalten; der eigene Shader existiert und
+passt (Schaum zeichnet die Uferlinie).
+Verworfen: Meter-Wert (Seen schrumpfen beim Hochskalieren); 0-als-Aus-
+Konvention wie beim Plateau (Wert ginge beim Ausschalten verloren);
+gekaufte Fluss-Assets für die Abgabe (bewertet wird eigener Code;
+Flüsse sind eine eigene Pipeline-Stufe → Kür nach dem Portfolio).
+
 ## 2026-07-17 — Minimalistisch zur Einsatzreife
 Was: Alle vier Session-Typen nur minimal definiert; ausgearbeitet wird
 erst, wenn der Praxisbetrieb es verlangt. Regel-Dateien beschreiben nur

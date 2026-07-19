@@ -10,7 +10,7 @@ keine Inhalte. Status: ohne Vermerk = existiert, (geplant) = noch nicht gebaut.
 | INDEX.md | Landkarte aller Dokumente |
 | ROADMAP.md | Nur Baureihenfolge — was als Nächstes gebaut wird |
 | DOC_RULES.md | (geplant) Pflegeregeln aller Dokumente — außer GDD.md und KNOWLEDGE.md, die eigene Rules-Dateien haben |
-| WORKFLOW.md | Session-Disziplin: Grundregeln + vier Session-Typen (Brainstorm im Einsatz, Rest minimal) |
+| WORKFLOW.md | Session-Disziplin: Grundregeln + drei Session-Typen (Brainstorm/Design im Einsatz, Development im Praxistest, Art minimal) |
 | FEATURE_LOG.md | Nur fertig Gebautes und Geprüftes — nichts Geplantes |
 | DECISIONS.md | Entscheidungen: was, warum, verworfene Alternativen |
 | GLOSSARY.md | (geplant) Projektbegriffe mit fester Bedeutung |

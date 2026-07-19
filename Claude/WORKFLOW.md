@@ -21,8 +21,13 @@ Ownership: Session-Typen und Session-Disziplin.
 
 ## Session-Typen
 
-### Brainstorm (im Einsatz, getestet)
-Ideen verarbeiten/evaluieren, freies Brainstorming, Sonderaufgaben ohne Code.
+### Brainstorm/Design (im Einsatz, getestet)
+Ideen verarbeiten/evaluieren, freies Brainstorming, ausdesignen was
+gebaut wird und wie — Sonderaufgaben ohne Code. Ergebnis: Entscheidungen
+in DECISIONS.md, Design-Absicht später ins GDD.
+Regel pro Baustein: erst eine Brainstorm/Design-Session (was & wie
+entscheiden), dann die Development-Session (nur Umsetzung). Eine
+Brainstorm/Design-Session darf mehrere Bausteine vorentscheiden.
 Zu Beginn fragt Claude, welcher Modus gilt: **normal** oder **uni**.
 - **Normal** — wie oben, kurz und bündig.
 - **Uni** — Fokus auf Erklären, nicht auf Bauen/Entscheiden:
@@ -35,15 +40,18 @@ Zu Beginn fragt Claude, welcher Modus gilt: **normal** oder **uni**.
   - Erkenntnisse am Session-Ende in den Knowledge-Ordner
     (KNOWLEDGE_RULES.md).
 
-### Design (minimal, ungetestet)
-Eine Sache ausdesignen: was gebaut wird und wie, bevor entwickelt wird.
-Ergebnis: Entscheidungen in DECISIONS.md, Design-Absicht später ins GDD.
-
-### Development (minimal, ungetestet)
-Die eigentliche Entwicklung; läuft, bis die nächste Runde startet.
+### Development (minimal; erster Praxistest: Chunk-Umbau)
+Nur Umsetzung dessen, was in DECISIONS.md vorentschieden ist.
+Lern-Modus ist der Normalfall: Isor tippt selbst; Claude liefert
+Gerüst, Erklärungen und Rechenbeispiele zum Prüfen — keine fertigen
+Dateien. Kleine Design-Fragen (Namen, Ablageort) werden inline geklärt;
+Fragen, die Architektur oder mehrere Bausteine betreffen, werden
+notiert und in die nächste Brainstorm/Design-Session gegeben.
 Vor dem Coden: Review-Gate aus CODE_GUIDELINES.md durchgehen.
 Gebautes in FEATURE_LOG.md, Entscheidungen in DECISIONS.md.
-Commits: siehe Grundregel „Session-Ende".
+Commits: siehe Grundregel „Session-Ende". Typ wird im Praxistest
+nachgeschärft. (Später-Schublade: automatisierter Modus — Claude baut,
+Isor reviewt — erst nach der Lernphase.)
 
 ### Art (minimal, ungetestet)
 Prompts für Image-Generation/Concepts erzeugen — bildliche Kommunikation

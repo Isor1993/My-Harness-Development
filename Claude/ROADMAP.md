@@ -35,8 +35,10 @@ Ausgearbeitet wird am Harness nur noch, was der Praxisbetrieb verlangt.
 1. [ ] Praxistest: Uni-Betrieb ab 2026-07-18, Harness dabei nachschärfen
 2. [ ] CODE_GUIDELINES.md beim ersten Development-Einsatz in der Praxis
    nachschärfen (Rohmaterial liegt vor)
-3. [ ] Uni: PCG + Engine-Tool fertigstellen — Editor-Tool (UI + Design
-   Pattern) und Platzierungs-Stufe (Ziel: Ende Juli)
+3. [ ] Uni: PCG + Engine-Tool fertigstellen — Chunk-Umbau (2048 m,
+   Start 2 m/Quad) → Randnotizen fixen (HeightCurve unter Null,
+   Plateau-Krater) → Parameter-Tuning → Wasserspiegel →
+   Platzierungs-Stufe (Editor-Tool ist fertig; Ziel: Ende Juli)
 4. [ ] TDD für die Uni-Abgabe aus TDD_NOTES.md generieren (Ziel: Ende
    Juli; Portfolio-Abgabe 2026-08-21)
 5. [ ] Uni: Threadoptimierung (K2, K3, S3; formativ 2026-08-07)
@@ -58,3 +60,7 @@ Ausgearbeitet wird am Harness nur noch, was der Praxisbetrieb verlangt.
   programmiert (Lernphase: Isor tippt selbst)
 - Harness-Dokumente auf Englisch umstellen — prüfen, ob das in der
   Praxis besser funktioniert (Unterhaltung darf deutsch bleiben)
+- Development-Session „automatisierter Modus" (Claude baut, Isor
+  reviewt) — erst nach der Lernphase
+- Uni-Projekt-Kür nach dem Portfolio: echte Flüsse (Spline-Mesh,
+  evtl. gekaufte Assets), Insel via Falloff-Map + Wasserspiegel

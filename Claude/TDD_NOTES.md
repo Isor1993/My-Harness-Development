@@ -97,3 +97,26 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   Division in t ab — statt sich auf die Zweig-Reihenfolge zu verlassen
   (gleiche Linie wie noiseScale: falscher Wert entsteht gar nicht erst).
   Pipeline-Klassen loggen nicht (siehe DECISIONS 2026-07-19).
+- 2026-07-19 — [Terrain] Chunk-Entscheidung: Welt 2048 m Kante, Start
+  2 m/Quad → 8×8 Chunks à 129 Vertices (16.641/Chunk, ~1,06 Mio gesamt);
+  1 m/Quad = 16×16 Chunks per Inspector. Begründung: 16-Bit-Limit
+  65.535 Verts/Mesh (max. 255×255) hieße ~8 m/Quad bei 2 km — zu grob;
+  Chunks liefern Culling + Thread-Granularität. Threading bewusst ans
+  Ende: langsame Version = Baseline-Messdaten für die Threading-Abgabe.
+- 2026-07-19 — [Terrain] Chunk-Nahtlosigkeit: Noise nach Weltposition
+  sampeln, nie nach lokalem Chunk-Index — Nachbarränder fragen identische
+  Weltkoordinaten ab → identische Höhen, Naht gratis. Bekannte Baustelle:
+  RecalculateNormals kennt nur das eigene Chunk-Mesh → Beleuchtungsnaht;
+  Lösung: Normalen aus der Heightmap rechnen, eine Reihe Überlappung.
+- 2026-07-19 — [Terrain] Wasserspiegel-Design: waterLevel 0–1 (Vergleich
+  nach der HeightCurve), Plane auf waterLevel × heightMultiplier mit
+  eigenem Shader-Graph-Material; _waterEnabled-Bool; OnValidate-Warnung
+  bei PlateauHeight <= WaterLevel; Margin für kahlen Uferstreifen als
+  Platzierungs-Input (platzieren erst ab height > waterLevel + margin).
+  0–1 statt Meter: Wasser skaliert mit der Karte, Uferlinie bleibt bei
+  Multiplier-Änderungen exakt gleich.
+- 2026-07-19 — [Terrain] Platzierung entkoppelt von Auflösung: Objekte
+  stehen in Weltkoordinaten (beliebige floats), die Heightmap ist nur
+  das interpolierte Höhen-Nachschlagewerk (Mischung der Nachbarpunkte,
+  gewichtet nach Nähe). Auflösung bestimmt Bodenform-Detail und
+  Steigungs-Glättung, nicht die Platzierungs-Präzision.
