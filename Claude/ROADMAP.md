@@ -35,12 +35,15 @@ Ausgearbeitet wird am Harness nur noch, was der Praxisbetrieb verlangt.
 1. [ ] Praxistest: Uni-Betrieb ab 2026-07-18, Harness dabei nachschärfen
 2. [ ] CODE_GUIDELINES.md beim ersten Development-Einsatz in der Praxis
    nachschärfen (Rohmaterial liegt vor)
-3. [ ] Uni: PCG + Engine-Tool fertigstellen — Chunk-Umbau fertig
-   (2026-07-19) → Randnotizen fixen (HeightCurve unter Null,
-   Plateau-Krater, Beleuchtungs-Nähte an Chunk-Grenzen prüfen) →
-   Parameter-Tuning (Ziel-Look: flache Basis, ~5 große Hügel, Senken
-   für Wasser) → Wasserspiegel → Platzierungs-Stufe (Editor-Tool ist
-   fertig; Ziel: Ende Juli)
+3. [ ] Uni: PCG + Engine-Tool fertigstellen — Chunk-Umbau, Randnotizen
+   (HeightCurve-Clamp, Plateau-Krater via Tuning gelöst, Terracing-Fix)
+   und Beleuchtungs-Nähte (Padding-Ring + analytische Normalen aus der
+   Heightmap) erledigt (2026-07-19); Parameter-Tuning steht (Look „ein
+   bis mehrere Massive", Feinschliff später mit Wasser) → **als
+   Nächstes: Wasserspiegel** → Platzierungs-Stufe (Editor-Tool ist
+   fertig; Ziel: Ende Juli). Notierte Design-Frage für die nächste
+   Brainstorm/Design-Session: höhen-/steigungsabhängige Texturierung
+   (Berg vs. Flachland; Texturierung bleibt erster Streichkandidat)
 4. [ ] TDD für die Uni-Abgabe aus TDD_NOTES.md generieren (Ziel: Ende
    Juli; Portfolio-Abgabe 2026-08-21)
 5. [ ] Uni: Threadoptimierung (K2, K3, S3; formativ 2026-08-07)

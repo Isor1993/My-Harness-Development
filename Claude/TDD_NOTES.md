@@ -128,3 +128,23 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   das interpolierte Höhen-Nachschlagewerk (Mischung der Nachbarpunkte,
   gewichtet nach Nähe). Auflösung bestimmt Bodenform-Detail und
   Steigungs-Glättung, nicht die Platzierungs-Präzision.
+- 2026-07-19 — [Terrain] Float-Präzisions-Terracing: Perlin bei Sample-
+  Koordinaten ~100000 löst float nur in ~0.008er-Schritten auf; bei 2 m/Quad
+  ist der Sample-Schritt 2/NoiseScale ≈ 0.004 < 0.008 → Nachbarvertices runden
+  auf denselben Wert → Terrassen (nur bei feiner Auflösung, nicht bei grober).
+  Fix: Octave-Offsets klein halten (±10000). Lektion: großer Zahlenbereich +
+  kleiner Abstand = Präzisionsverlust.
+- 2026-07-19 — [Terrain/Mesh] Nahtlose Beleuchtung: RecalculateNormals ist pro
+  Mesh lokal → Chunk-Kanten unterschiedlich beleuchtet. Lösung: Heightmap mit
+  1-Vertex-Randring (Nachbar-Weltpositionen), Normalen analytisch per zentraler
+  Differenz normal = normalize(hL−hR, 2·spacing, hD−hU); geteilte Kante rechnet
+  in beiden Chunks identisch. Padding-Mapping: Arraygröße res+2, Weltindex =
+  chunk·(res−1)+(lokal−1). Erledigt die Baustelle aus dem Chunk-Eintrag.
+- 2026-07-19 — [Terrain] HeightCurve-Clamp: AnimationCurve kann zwischen
+  gültigen Keys über-/unterschwingen (Attribut greift nicht) → Laufzeit
+  Mathf.Clamp01 nach Evaluate. Bewusste Ausnahme zur Inspector-Guard-Linie.
+- 2026-07-19 — [Terrain] Finaler Tuning-Look „ein bis mehrere Bergmassive":
+  NoiseScale ~460–600, HeightMultiplier 700, Octaves 5, Persistence ~0.28–0.36,
+  HeightCurve mit flacher Basis + spätem Anstieg, Seed durchprobieren.
+  Verhältnis Höhe:Breite ~25 % (wie das Referenz-Terrain); Seed steuert die
+  Lage der Massive, gezielte Platzierung bräuchte einen Mask-Modifier (Kür).

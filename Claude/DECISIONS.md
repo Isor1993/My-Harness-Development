@@ -240,3 +240,29 @@ Warum: Uni-Projekt startet 2026-07-18 — funktionstüchtig schlägt
 vollständig.
 Verworfen: volle Ausarbeitung aller Dokumente vor Praxisstart
 (alte Roadmap-Reihenfolge).
+
+## 2026-07-19 — HeightCurve clampen, Octave-Offsets begrenzen
+Was: Generator wickelt Evaluate in Mathf.Clamp01; Octave-Offsets laufen nur
+noch ±10000 (benannte Konstante MaxOctaveOffset) statt ±100000.
+Warum: Weiche Kurven-Tangenten schwingen zwischen Keys unter 0/über 1 durch —
+per Attribut nicht begrenzbar (bewusste Ausnahme zu „Wertebereiche an der
+Eingabe", 2026-07-18), daher Laufzeit-Clamp. Große Offsets sampeln Perlin bei
+~100000, wo float gröber auflöst als der 2-m-Vertexschritt → identische
+Nachbarwerte → Terrassen bei Auflösung 129 (nicht bei 40).
+Verworfen: Kurve ungeclampt lassen; Offsets bei ±100000 (Terracing).
+
+## 2026-07-19 — Nahtlose Normalen über Padding-Ring statt RecalculateNormals
+Was: HeightmapGenerator gibt die Heightmap um 1 Vertex gepaddet zurück (Ring =
+Nachbarhöhen, nicht im Mesh); MeshBuilder baut nur das Innere und rechnet
+Normalen analytisch aus Nachbarhöhen (zentrale Differenz). Mapping: Array-/
+Schleifengröße = ChunkResolution+2, Weltmapping bleibt ChunkResolution−1 mit
+(index−1)-Versatz.
+Warum: RecalculateNormals kennt nur das eigene Chunk-Mesh → doppelte Rand-
+Vertices bekommen verschiedene Normalen → Beleuchtungsnaht. Der Ring liefert
+beiden Chunks identische Nachbarhöhen an der geteilten Kante → identische
+Normale, deterministisch, lokal (kein Cross-Chunk-Nachbearbeiten). Ergänzt
+DECISIONS 2026-07-19 „Chunk-Nahtlosigkeit" (Geometrie war schon nahtlos, jetzt
+auch die Beleuchtung).
+Verworfen: Rand-Normalen nachträglich über alle Meshes mitteln (Cross-Chunk-
+Pass, Float-Positionsabgleich, fehleranfällig); Einzelmesh mit 32-Bit-Indizes
+(kein Culling).

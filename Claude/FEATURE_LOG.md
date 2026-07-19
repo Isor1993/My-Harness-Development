@@ -60,3 +60,15 @@ Format: `- JJJJ-MM-TT — Feature (1–2 Sätze: was und wo)`
   Game View, Plateau global korrekt platziert.
 - 2026-07-19 — TerrainPreview gelöscht (samt Szenen-Objekt): der
   Test-Treiber ist durch das Editor-Tool abgelöst.
+- 2026-07-19 — Terrain-Feinschliff (Scripts/): HeightCurve-Ergebnis auf
+  0–1 geclamped (Overshoot konnte unter den Weltboden ziehen); Octave-
+  Offsets auf ±10000 begrenzt (benannte Konstante MaxOctaveOffset) gegen
+  Float-Präzisions-Terrassen bei feiner Auflösung. Visuell verifiziert:
+  glatte Auflösung 129 ohne Riefen.
+- 2026-07-19 — Nahtlose Chunk-Normalen: HeightmapGenerator liefert die
+  Heightmap mit 1-Vertex-Randring (Weltpositions-Sampling der Nachbarzelle),
+  MeshBuilder rechnet Normalen analytisch aus den Nachbarhöhen (zentrale
+  Differenz) statt RecalculateNormals — geteilte Chunk-Kanten bekommen
+  dieselbe Normale, Beleuchtungsnähte verschwinden. PlateauModifier auf das
+  Padding-Mapping nachgezogen, Blend-Ring auf Mathf.SmoothStep umgestellt
+  (kein Knick). Visuell im Streiflicht verifiziert: keine Nähte.
