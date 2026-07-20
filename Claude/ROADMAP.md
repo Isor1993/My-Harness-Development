@@ -38,12 +38,15 @@ Ausgearbeitet wird am Harness nur noch, was der Praxisbetrieb verlangt.
 3. [ ] Uni: PCG + Engine-Tool fertigstellen — Chunk-Umbau, Randnotizen
    (HeightCurve-Clamp, Plateau-Krater via Tuning gelöst, Terracing-Fix)
    und Beleuchtungs-Nähte (Padding-Ring + analytische Normalen aus der
-   Heightmap) erledigt (2026-07-19); Parameter-Tuning steht (Look „ein
-   bis mehrere Massive", Feinschliff später mit Wasser) → **als
-   Nächstes: Wasserspiegel** → Platzierungs-Stufe (Editor-Tool ist
-   fertig; Ziel: Ende Juli). Notierte Design-Frage für die nächste
-   Brainstorm/Design-Session: höhen-/steigungsabhängige Texturierung
-   (Berg vs. Flachland; Texturierung bleibt erster Streichkandidat)
+   Heightmap) erledigt (2026-07-19); Wasserspiegel erledigt und visuell
+   verifiziert (2026-07-20, Seen im Tal, Uferschaum sauber) → **als
+   Nächstes: Platzierungs-Stufe** (Editor-Tool ist fertig; Ziel: Ende
+   Juli). Notierte Design-Fragen für die nächste Brainstorm/Design-Session:
+   höhen-/steigungsabhängige Texturierung (Berg vs. Flachland; Texturierung
+   bleibt erster Streichkandidat); inkrementelles/einzelnes Generieren
+   (Wasser/Platzierung neu würfeln ohne vollen Terrain-Rebuild — betrifft
+   Fenster, Presenter-Zustand und die Platzierungs-Stufe, aufgekommen
+   2026-07-20)
 4. [ ] TDD für die Uni-Abgabe aus TDD_NOTES.md generieren (Ziel: Ende
    Juli; Portfolio-Abgabe 2026-08-21)
 5. [ ] Uni: Threadoptimierung (K2, K3, S3; formativ 2026-08-07)

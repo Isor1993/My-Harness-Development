@@ -72,3 +72,11 @@ Format: `- JJJJ-MM-TT — Feature (1–2 Sätze: was und wo)`
   dieselbe Normale, Beleuchtungsnähte verschwinden. PlateauModifier auf das
   Padding-Mapping nachgezogen, Blend-Ring auf Mathf.SmoothStep umgestellt
   (kein Knick). Visuell im Streiflicht verifiziert: keine Nähte.
+- 2026-07-20 — Wasserspiegel: TerrainConfig um Water-Gruppe erweitert
+  (isWaterEnabled, waterLevel 0–1, shoreMargin, waterMaterial) plus
+  OnValidate-Warnung, wenn ein aktives Plateau auf/unter dem Wasserstand
+  läge (Dorf säuft ab). TerrainToolPresenter baut bei aktivem Wasser eine
+  Plane als Kind des Terrain-Roots (BuildWaterPlane): auf die Karte
+  skaliert, mittig, auf waterLevel × heightMultiplier gehoben, Material
+  mit Pipeline-Default-Fallback, MeshCollider entfernt. Visuell verifiziert:
+  Seen füllen die Täler, Shader-Schaum zeichnet die Uferlinie sauber nach.

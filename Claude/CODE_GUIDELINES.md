@@ -156,6 +156,9 @@ Quelle: Code-Rules des Dozenten (v2.2), gefiltert im Brainstorm 2026-07-17.
 - Keine Design-Doc-Zitate in Code/Kommentaren (rotten still) —
   Absicht in eigenen Worten hinschreiben.
 - YAGNI: Abstraktion erst beim zweiten konkreten Use-Case.
+- Magic Numbers benennen: ein Literal, das ein externes Faktum kodiert,
+  bekommt eine benannte `const` mit Warum-Kommentar. Selbsterklärende
+  Arithmetik bleibt roh.
 - Unity-6-APIs (`rb.linearVelocity`, nicht `rb.velocity`). 4 Spaces,
   keine Tabs.
 
