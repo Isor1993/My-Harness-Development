@@ -39,14 +39,15 @@ Ausgearbeitet wird am Harness nur noch, was der Praxisbetrieb verlangt.
    (HeightCurve-Clamp, Plateau-Krater via Tuning gelöst, Terracing-Fix)
    und Beleuchtungs-Nähte (Padding-Ring + analytische Normalen aus der
    Heightmap) erledigt (2026-07-19); Wasserspiegel erledigt und visuell
-   verifiziert (2026-07-20, Seen im Tal, Uferschaum sauber) → **als
-   Nächstes: Platzierungs-Stufe** (Editor-Tool ist fertig; Ziel: Ende
-   Juli). Notierte Design-Fragen für die nächste Brainstorm/Design-Session:
-   höhen-/steigungsabhängige Texturierung (Berg vs. Flachland; Texturierung
-   bleibt erster Streichkandidat); inkrementelles/einzelnes Generieren
-   (Wasser/Platzierung neu würfeln ohne vollen Terrain-Rebuild — betrifft
-   Fenster, Presenter-Zustand und die Platzierungs-Stufe, aufgekommen
-   2026-07-20)
+   verifiziert (2026-07-20, Seen im Tal, Uferschaum sauber); Platzierungs-
+   Stufe **durchdesignt** (2026-07-21, acht Entscheidungen in DECISIONS +
+   TDD_NOTES, Design-Blatt als Artifact) → **als Nächstes: Development der
+   Platzierungs-Stufe** (Reihenfolge: SampleHeight → Placeable/Placement →
+   Poisson+Regeln → DensityStrategy → Panel; Ziel: Ende Juli). Offene
+   Design-Frage bleibt nur noch: höhen-/steigungsabhängige Texturierung
+   (Berg vs. Flachland; bleibt erster Streichkandidat). Inkrementelles/
+   einzelnes Generieren ist im Platzierungs-Design gelöst (getrennte
+   „Place Objects"-Buttons, kein Terrain-Rebuild).
 4. [ ] TDD für die Uni-Abgabe aus TDD_NOTES.md generieren (Ziel: Ende
    Juli; Portfolio-Abgabe 2026-08-21)
 5. [ ] Uni: Threadoptimierung (K2, K3, S3; formativ 2026-08-07)

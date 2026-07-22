@@ -266,3 +266,83 @@ auch die Beleuchtung).
 Verworfen: Rand-Normalen nachträglich über alle Meshes mitteln (Cross-Chunk-
 Pass, Float-Positionsabgleich, fehleranfällig); Einzelmesh mit 32-Bit-Indizes
 (kein Culling).
+
+## 2026-07-21 — Platzierungs-Stufe: reine Stufe, zwei Listen, globales Poisson
+Was: ObjectPlacer als reine statische Stufe (Geschwister zu MeshBuilder, liest
+nur, fasst die Szene nicht an). Zwei Listen: Placeable (`[Serializable] class`,
+Array in TerrainConfig — prefab, min/maxHeight, maxSlope, minSpacing,
+scaleMin/Max, alignToGround, DensityStrategy) → Placement (`struct`, tausendfach
+— prefab, position, rotation, scale). Der Presenter instanziiert. Verteilung:
+globales Poisson-Disc über die ganze Karte, Ergebnis pro Chunk einsortiert.
+Warum: hält den Pipeline-Stil (reine Daten-Stufe, nur der Presenter mutiert die
+Szene); Poisson garantiert den Mindestabstand (Isors Kernanforderung); global,
+weil Poissons Garantie global ist und per-Chunk am Nahtrand wieder Berührungen
+erzeugt; struct spart Garbage bei tausenden Einträgen, class nötig für den
+Inspector. Konkretisiert DECISIONS 2026-07-18 „Formen vor Reagieren".
+Verworfen: per-Chunk-Poisson (Naht-Abstand nur mit Rand-Check, mehr Code);
+Raster+Versatz (kein garantierter Abstand); reiner Zufall (klumpt); prefab per
+Index statt direkt (YAGNI); gespeicherte Placement-Liste als Asset.
+
+## 2026-07-21 — Höhe/Steigung für die Platzierung: gemeinsame SampleHeight-Funktion
+Was: „Höhe an Weltposition" wird als `SampleHeight(config, x, z)` aus dem
+HeightmapGenerator herausgezogen (Noise → Curve → Plateau an einem Punkt);
+Chunk-Schleife und Placer nutzen dieselbe Funktion. Steigung und Ausrichtungs-
+Normale kommen aus vier Nachbar-Samples (zentrale Differenz wie im MeshBuilder)
+— eine Rechnung, zwei Zwecke. Der Placer braucht das Mesh nicht.
+Warum: eine Quelle der Wahrheit statt Doppel-Logik; Funktion statt gespeichertem
+Gitter, weil der Placer nur verstreut abfragt (~9.600 Punkte gegen ~1,05 Mio
+Gitterzellen) und ein Cache bei Config-Änderung veraltet; Funktion passt zum
+stateless-pure Stil (Generator/MeshBuilder halten keinen Zustand).
+Verworfen: eigenes globales Höhen-Gitter für die Platzierung (Doppelrechnung,
+Veraltungs-Risiko, einziger dauerhafter Zustand — Fremdkörper); Mesh-Faces
+abfragen für die Ausrichtung (Normale gibt es analytisch aus SampleHeight).
+
+## 2026-07-21 — Platzierung: ein Poisson-Durchgang pro Typ, Reihenfolge=Priorität, Regel-Filter
+Was: ein Poisson-Durchgang je Placeable-Typ (eigener minSpacing-Radius);
+Reihenfolge in Liste 1 = Priorität. Jeder Durchgang nimmt eine Blocker-Liste
+entgegen (jetzt leer → Bäume/Gras unabhängig; später legt der Dorf-Schritt die
+Haus-Grundrisse hinein → Gras/Bäume meiden Häuser, ohne Umbau). Regel-Filter je
+Kandidat, billig→teuer: Wasser-Untergrenze (global, nur wenn isWaterEnabled,
+height ≥ waterLevel + shoreMargin) → Höhenband (max(Wasser, minHeight)…maxHeight)
+→ Steigung (≤ maxSlope). Alle bestanden → Placement.
+Warum: derselbe Poisson-Abstandsmechanismus deckt auch den Inter-Typ-Ausschluss
+(Blocker als Fremd-Punkte) — kein Sonderfall; Reihenfolge billig→teuer spart die
+teure Steigungsrechnung bei früh abgelehnten Punkten; Wasser-Regel global, weil
+die Uferlinie eine Welt-Eigenschaft ist. Nutzt shoreMargin aus DECISIONS
+2026-07-19 „Wasserspiegel".
+Verworfen: fest verdrahtete Inter-Typ-Ausschlüsse / Ausschluss-Matrix jetzt
+(YAGNI); Wasser-Regel pro Placeable-Zeile.
+
+## 2026-07-21 — Dichte-Steuerung als austauschbare DensityStrategy (Strategy-Pattern)
+Was: „wo viel/wenig" als Wahrscheinlichkeits-Ausdünnung statt variablem Poisson-
+Radius. Abstrakte `DensityStrategy` (ScriptableObject) mit
+`AcceptanceProbability(x, z) → 0–1`; drei Start-Assets: Uniform (immer 1),
+NoiseMask (Rausch-Wert, eigener Seed/Scale), Probability (feste Zahl). Feld pro
+Placeable, leer = Uniform. Der Würfel-Wurf (`random < p`) lebt einmal im Placer,
+die Strategie liefert nur p.
+Warum: fester-Radius-Poisson + Ausdünnung ist eine simple 4. Filterstufe;
+variabler-Radius-Poisson bricht die Gitter-Beschleunigung (fummelig); Strategy
+ist offen für neue Arten ohne Placer-Änderung; NoiseMask als eigenes Asset →
+mehrere Masken frei kombinierbar. Erfüllt zugleich das Design-Pattern-Kriterium
+der Tool-Aufgabe (zweites Muster neben MVP).
+Verworfen: variabler-Radius-Poisson; enum + switch (nicht ohne Code
+erweiterbar); Strategie global statt pro Typ.
+
+## 2026-07-21 — Tool-Panel, Prefabs, placementSeed
+Was: reiches Editor-Panel — „Generate Complete" (alles in Prioritätsordnung),
+Einzel-Stufen (Terrain / Wasser / Place Objects), plus pro-Typ „Place"/„Clear"
+**aus Liste 1 erzeugt** (nicht fest verdrahtet). Eigene „Generated Placement"-
+Wurzel unter dem Terrain-Root; „Place Objects" läuft ohne Terrain-Rebuild
+(schnelles Tunen), Terrain-Regenerieren räumt die Platzierung als veraltet weg.
+Prefabs kunst-blind (Referenz in Placeable; Platzhalter-Primitive jetzt, echte
+Assets später ohne Code-Change). Gras-Masse-Rendering im Presenter kapselbar
+(GameObjects jetzt → GPU-Instancing/Details später), aufgeschoben inkl.
+Praxis-Test Prefab-Gras vs. Detail. Eigener `placementSeed` (getrennt vom
+Terrain-Seed → Verteilung neu würfeln ohne Rebuild), pro Typ abgeleitet, alles
+Zufällige deterministisch.
+Warum: Aufgabe belohnt umfangreiche Tools; Einzel-Stufen helfen beim Bauen/
+Debuggen; pro-Typ aus der Liste bleibt datengetrieben (neuer Typ = automatisch
+Buttons); getrennter Seed löst die vorgemerkte „inkrementell generieren"-Frage;
+Rendering-Tausch hinter dem Presenter hält die Platzierungs-Logik unberührt.
+Verworfen: Tree/Grass fest verdrahtete Buttons; Auto-Platzierung bei jedem
+Terrain-Generate; Platzierung an den Terrain-Seed gekoppelt.

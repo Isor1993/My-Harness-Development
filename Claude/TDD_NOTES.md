@@ -148,3 +148,29 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   HeightCurve mit flacher Basis + spätem Anstieg, Seed durchprobieren.
   Verhältnis Höhe:Breite ~25 % (wie das Referenz-Terrain); Seed steuert die
   Lage der Massive, gezielte Platzierung bräuchte einen Mask-Modifier (Kür).
+- 2026-07-21 — [Platzierung] Design der Platzierungs-Stufe: ObjectPlacer reine
+  statische Stufe (Geschwister zu MeshBuilder), zwei Datentypen — Placeable
+  (class, Config-Array: prefab, min/maxHeight, maxSlope, minSpacing,
+  scaleMin/Max, alignToGround, DensityStrategy) → Placement (struct: prefab,
+  position, rotation, scale); Presenter instanziiert. Verteilung: globales
+  Poisson-Disc (garantierter Mindestabstand), Ergebnis pro Chunk einsortiert.
+- 2026-07-21 — [Platzierung] SampleHeight(config, x, z) als gemeinsame Höhen-
+  Funktion (Noise→Curve→Plateau an einem Punkt) für Chunk-Schleife und Placer;
+  Steigung/Ausrichtungs-Normale aus 4 Nachbar-Samples (zentrale Differenz, wie
+  MeshBuilder) — eine Rechnung, zwei Zwecke. Funktion statt Cache: Placer fragt
+  nur ~9.600 Punkte (gegen ~1,05 Mio Gitterzellen), ein Cache veraltet.
+- 2026-07-21 — [Platzierung] Ein Poisson-Durchgang pro Typ (eigener Radius),
+  Reihenfolge=Priorität, Blocker-Liste für späteren Inter-Typ-Ausschluss (jetzt
+  leer). Regel-Filter je Kandidat billig→teuer: Wasser-Untergrenze (global,
+  height ≥ waterLevel + shoreMargin, nur bei isWaterEnabled) → Höhenband
+  (max(Wasser, minHeight)…maxHeight) → Steigung (≤ maxSlope).
+- 2026-07-21 — [Pattern] Zweites Design-Pattern fürs TDD: Strategy —
+  DensityStrategy (ScriptableObject, AcceptanceProbability(x,z)→0–1) mit
+  Uniform/NoiseMask/Probability. Dichte-Variation als Wahrscheinlichkeits-
+  Ausdünnung statt variablem Poisson-Radius; offen/geschlossen: neue Art = neues
+  Asset, Placer unberührt.
+- 2026-07-21 — [Tools] Panel-Ausbau: Generate Complete + Einzel-Stufen (Terrain/
+  Wasser/Place) + pro-Typ Place/Clear aus Liste 1 erzeugt (datengetrieben, nicht
+  fest verdrahtet); „Place Objects" ohne Terrain-Rebuild (inkrementelles
+  Generieren), eigene „Generated Placement"-Wurzel; eigener placementSeed
+  getrennt vom Terrain-Seed → Verteilung neu würfeln ohne Rebuild.
