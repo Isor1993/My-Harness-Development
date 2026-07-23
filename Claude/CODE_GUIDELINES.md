@@ -65,6 +65,30 @@ History: pro nennenswerter Änderung eine neue Zeile `<Datum> ER <Was>`.
   `OnEnable` …) brauchen keine.
 - Methoden mit Parametern oder Rückgabewert: `<param>` / `<returns>`
   ergänzen.
+- Format: **mehrzeilig**, wie das IDE bei `///` erzeugt — `<summary>` und
+  `</summary>` je eigene Zeile, Text dazwischen; nicht einzeilig
+  zusammenziehen (gilt auch für Properties). `<param>`/`<returns>` knapp
+  füllen, kein Wort-für-Wort-Wiederholen des Offensichtlichen (sonst
+  AI-Geruch, siehe Inline-Kommentare).
+- Felder bekommen **kein** `<summary>`: serialisierte Felder tragen ihre
+  Erklärung im `[Tooltip]` (siehe Inspector-Felder), nicht-offensichtliche
+  `const`/private Felder höchstens eine kurze `//`-Zeile mit dem Warum.
+- Property-`<summary>` und Feld-`[Tooltip]` dürfen sich inhaltlich
+  überlappen: die Summary erscheint im Code-IntelliSense (wo Aufrufer die
+  Property lesen), der Tooltip im Inspector — verschiedene Orte, keine
+  verbotene Dopplung. Summary sagt, was der Name nicht trägt (Einheit,
+  Bereich).
+
+### Inline-Kommentare
+- **Default: kein Kommentar.** Ein Inline-Kommentar rechtfertigt sich nur,
+  wenn ein kompetenter C#-Leser ohne ihn in die Irre ginge oder hängen
+  bliebe. Das Warum von Designentscheidungen steht in DECISIONS.md und im
+  Datei-Header, nicht inline.
+- Wenn nötig, dann **einzeilig**; mehrzeilige Erklärblöcke im
+  Methodenkörper vermeiden. Wiederholt der Kommentar den Code nur auf
+  Englisch → löschen.
+- Kein Nacherzählen des Codes — klingt sonst AI-generiert; bei einer
+  benoteten Abgabe ein echtes Risiko.
 
 ### Inspector-Felder
 - Jedes serialisierte Feld bekommt ein `[Tooltip]` — was es ist und
@@ -155,6 +179,10 @@ Quelle: Code-Rules des Dozenten (v2.2), gefiltert im Brainstorm 2026-07-17.
   — so bleibt es per Einstellung konfigurierbar.
 - Keine Design-Doc-Zitate in Code/Kommentaren (rotten still) —
   Absicht in eigenen Worten hinschreiben.
+- Debug-Ausgaben (`Debug.Log`/`LogWarning`/`LogError`) in
+  `#if UNITY_EDITOR … #endif` kapseln — Dozenten-Regel: keine Debug-Logs
+  im gebauten Spiel. Reine Pipeline-Klassen loggen ohnehin nicht
+  (DECISIONS 2026-07-19).
 - YAGNI: Abstraktion erst beim zweiten konkreten Use-Case.
 - Magic Numbers benennen: ein Literal, das ein externes Faktum kodiert,
   bekommt eine benannte `const` mit Warum-Kommentar. Selbsterklärende

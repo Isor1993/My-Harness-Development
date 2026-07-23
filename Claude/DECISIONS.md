@@ -346,3 +346,26 @@ Buttons); getrennter Seed löst die vorgemerkte „inkrementell generieren"-Frag
 Rendering-Tausch hinter dem Presenter hält die Platzierungs-Logik unberührt.
 Verworfen: Tree/Grass fest verdrahtete Buttons; Auto-Platzierung bei jedem
 Terrain-Generate; Platzierung an den Terrain-Seed gekoppelt.
+
+## 2026-07-23 — SampleHeight komponiert, PlateauModifier bleibt eigener Job
+Was: Die geteilte Höhen-Funktion `SampleHeight` ist ein dünner Komponist
+(Noise+Curve, dann `PlateauModifier.SampleAt`); die Plateau-Logik bleibt in
+`PlateauModifier` (jetzt per-Punkt statt Array), nicht inline in `SampleHeight`
+gefaltet. Setzt DECISIONS 2026-07-21 „gemeinsame SampleHeight-Funktion" um.
+Warum: DRY (eine Wahrheit, ein Einstiegspunkt) und SRP (ein Job je Klasse)
+beißen sich nur bei Inline-Faltung; Trennung nach Job + Teilen durch Komposition
+erfüllt beide, kein Gott-Objekt. Von Isor selbst als Spannung erkannt.
+Verworfen: Plateau-Rechnung inline in `SampleHeight` (SRP-Verstoß);
+`PlateauModifier` löschen; ihn behalten UND Plateau in `SampleHeight`
+duplizieren (DRY-Verstoß).
+
+## 2026-07-23 — Kommentar-Konventionen geschärft
+Was: XML-Docs mehrzeilig (IDE-Standard, auch Properties); Inline-Kommentare
+Default = keiner, sonst einzeilig und Warum-only; Debug-Ausgaben in
+`#if UNITY_EDITOR`; Felder ohne `<summary>` (serialisiert → `[Tooltip]`).
+Festgehalten in CODE_GUIDELINES.
+Warum: benotete Abgabe — geschwätzige/AI-riechende Kommentare sind ein Risiko;
+Dozenten-Regel „keine Debug-Logs im Build"; das Warum lebt in DECISIONS/Header,
+nicht inline. Aus Isors Praxis-Feedback in Session 2026-07-23.
+Verworfen: einzeilige XML-Summaries; der „2–3 Zeilen erlaubt"-Inline-Zusatz
+(führte zu Über-Kommentierung).

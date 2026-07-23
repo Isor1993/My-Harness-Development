@@ -80,3 +80,20 @@ Format: `- JJJJ-MM-TT — Feature (1–2 Sätze: was und wo)`
   skaliert, mittig, auf waterLevel × heightMultiplier gehoben, Material
   mit Pipeline-Default-Fallback, MeshCollider entfernt. Visuell verifiziert:
   Seen füllen die Täler, Shader-Schaum zeichnet die Uferlinie sauber nach.
+- 2026-07-23 — SampleHeight extrahiert (`Systems/TerrainGenerator/Scripts/`):
+  `HeightmapGenerator.SampleHeight(config, offsets, worldX, worldZ)` liefert
+  die Höhe (Noise → HeightCurve → Plateau) an beliebiger Weltposition; die
+  Chunk-Schleife nutzt sie, der kommende ObjectPlacer kann sie teilen.
+  `PlateauModifier` von Array-Stufe (`Apply`) auf Punkt-Funktion (`SampleAt`)
+  umgestellt und in `SampleHeight` komponiert; separater Presenter-Aufruf
+  entfernt, `BuildOctaveOffsets` als geteilter Helfer. Padding-Konstante
+  benannt, Vertex-Index-Namen geschärft. Verhalten im Editor unverändert
+  verifiziert (Plateau an gleicher Stelle). Zusätzlich: Kommentierung aller
+  Terrain-Scripts auf den geschärften Maßstab gezogen (mehrzeilige XML-Docs,
+  schlanke Inline-Kommentare, `#if UNITY_EDITOR` um das OnValidate-Warning).
+- 2026-07-23 — Platzierungs-Datentypen (`Systems/TerrainGenerator/Scripts/`):
+  `Placeable` (serialisierbare Rezept-Klasse — Prefab, Höhenband, maxSlope,
+  minSpacing, scaleMin/Max, alignToGround; als `Placeable[]` in TerrainConfig
+  unter „Placement") und `Placement` (unveränderlicher struct — Prefab,
+  Position, Rotation, Scale). Kompiliert, Array im Inspector sichtbar. Basis
+  für den Placer (Block 3).

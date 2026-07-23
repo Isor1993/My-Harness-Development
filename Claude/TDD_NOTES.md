@@ -174,3 +174,22 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   fest verdrahtet); „Place Objects" ohne Terrain-Rebuild (inkrementelles
   Generieren), eigene „Generated Placement"-Wurzel; eigener placementSeed
   getrennt vom Terrain-Seed → Verteilung neu würfeln ohne Rebuild.
+- 2026-07-23 — [Platzierung/Architektur] SampleHeight umgesetzt: aus dem
+  HeightmapGenerator herausgezogen als geteilte reine Funktion
+  SampleHeight(config, offsets, worldX, worldZ) → Höhe an beliebiger Welt-
+  position. Schlüssel für die Teilbarkeit: worldX/worldZ als Parameter (nicht
+  Gitter-Index) — nur so kann sowohl die Chunk-Schleife (rechnet Index→Welt)
+  als auch der Placer (freie Weltkoordinaten) dieselbe Funktion rufen. Offsets
+  einmal gebaut (seed-abhängig, für alle Punkte gleich), als Parameter gereicht;
+  kein Klassen-Zustand (thread-tauglich, pure).
+- 2026-07-23 — [Architektur/Pattern] DRY vs. SRP aufgelöst per Komposition:
+  SampleHeight ist ein dünner Dirigent (Noise+Curve, dann PlateauModifier.
+  SampleAt); die Plateau-Rechnung bleibt in PlateauModifier (von Array-Stufe
+  Apply zu Punkt-Funktion SampleAt umgebaut). Trennung nach Job (SRP) + Teilen
+  über einen Einstiegspunkt (DRY) — kein Gott-Objekt, keine Doppel-Logik.
+- 2026-07-23 — [Platzierung] Datentypen gebaut: Placeable (class, [Serializable],
+  Array in TerrainConfig, [SerializeField]+Tooltip+[Range]/[Min], Get-only-
+  Properties) als Rezept; Placement (struct, unveränderlich per Konstruktor +
+  Get-only) als Ergebnis. class für Inspector-Serialisierung, struct gegen
+  Garbage bei tausenden Instanzen. DensityStrategy-Feld bewusst aufgeschoben
+  bis zum Strategy-Baustein (kein Verweis auf noch nicht existierenden Typ).
