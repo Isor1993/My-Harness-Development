@@ -193,3 +193,23 @@ Tools); neue Einträge einfach anhängen — sortiert wird beim Generieren.
   Get-only) als Ergebnis. class für Inspector-Serialisierung, struct gegen
   Garbage bei tausenden Instanzen. DensityStrategy-Feld bewusst aufgeschoben
   bis zum Strategy-Baustein (kein Verweis auf noch nicht existierenden Typ).
+- 2026-07-23 — [Platzierung] ObjectPlacer gebaut: reine statische Stufe,
+  `Place(config)` → List<Placement>. Pro Typ ein globaler Poisson-Durchgang,
+  Reihenfolge = Priorität, eigener `System.Random(placementSeed + i)`
+  (deterministisch, getrennt vom Terrain-Seed).
+- 2026-07-23 — [Platzierung/Algorithmus] Poisson-Disc nach Bridson: Beschleunigungs-
+  Gitter Zellgröße r/√2 (Diagonale = r → max. 1 Punkt/Zelle), Zelle speichert
+  sampleIndex+1 (0 = leer). Active-Liste als Front: zufälligen Punkt greifen, bis
+  zu 30 Würfe im Annulus [r, 2r] (Winkel + Abstand), ersten gültigen setzen, sonst
+  pensionieren. Kandidat gültig = in der Karte UND kein Nachbar < r; Nachbar-Check
+  nur im 5×5-Zellblock (Konflikt sitzt höchstens 2 Zellen weit) → O(n) statt O(n²).
+- 2026-07-23 — [Platzierung] Regel-Filter billig→teuer je Kandidat: Wasser-
+  Untergrenze (nur bei isWaterEnabled, height ≥ waterLevel + shoreMargin) →
+  Höhenband (minHeight…maxHeight) → Steigung (≤ maxSlope). Steigung zuletzt, weil
+  sie über SampleNormal vier weitere SampleHeight-Aufrufe kostet.
+- 2026-07-23 — [Platzierung] SampleNormal: Normale per zentraler Differenz aus vier
+  Nachbarhöhen (in Meter, × heightMultiplier), normal = normalize(hL−hR, 2·spacing,
+  hD−hU); Steigung = Vector3.Angle(normal, up). Placement-Rotation: zufälliger Yaw;
+  optional FromToRotation(up, normal) * Euler(yaw) — Tilt links, Yaw rechts, denn
+  Quaternion-Multiplikation ist nicht vertauschbar (falsche Reihenfolge schwenkt die
+  Achse von der Normale weg). Scale = Lerp(min, max, rand).

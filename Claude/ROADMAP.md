@@ -42,10 +42,11 @@ Ausgearbeitet wird am Harness nur noch, was der Praxisbetrieb verlangt.
    verifiziert (2026-07-20, Seen im Tal, Uferschaum sauber); Platzierungs-
    Stufe **durchdesignt** (2026-07-21, acht Entscheidungen in DECISIONS +
    TDD_NOTES, Design-Blatt als Artifact). Development läuft (2026-07-23):
-   **SampleHeight** extrahiert (V 0.0008) und **Placeable/Placement** samt
-   Config-Array gebaut (V 0.0009); als Nächstes der eigentliche **Placer:
-   Poisson + Regel-Filter**, dann DensityStrategy → Panel (Reihenfolge
-   unverändert; Ziel: Ende Juli). Offene
+   **SampleHeight** extrahiert (V 0.0008), **Placeable/Placement** samt
+   Config-Array (V 0.0009) und der **ObjectPlacer** (globales Poisson-Disc pro
+   Typ + Regel-Filter Wasser/Höhe/Steigung + Ausrichtung; V 0.0010) gebaut; als
+   Nächstes **DensityStrategy → Panel** (Reihenfolge unverändert; Ziel: Ende
+   Juli). Offene
    Design-Frage bleibt nur noch: höhen-/steigungsabhängige Texturierung
    (Berg vs. Flachland; bleibt erster Streichkandidat). Inkrementelles/
    einzelnes Generieren ist im Platzierungs-Design gelöst (getrennte

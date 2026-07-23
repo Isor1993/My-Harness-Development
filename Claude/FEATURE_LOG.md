@@ -97,3 +97,14 @@ Format: `- JJJJ-MM-TT — Feature (1–2 Sätze: was und wo)`
   unter „Placement") und `Placement` (unveränderlicher struct — Prefab,
   Position, Rotation, Scale). Kompiliert, Array im Inspector sichtbar. Basis
   für den Placer (Block 3).
+- 2026-07-23 — ObjectPlacer (`Systems/TerrainGenerator/Scripts/`): reine
+  statische Platzierungs-Stufe (Geschwister zu MeshBuilder, liest nur, fasst
+  die Szene nicht an). `Place(config)` läuft pro Placeable-Typ einen globalen
+  Poisson-Disc-Durchgang (Bridson, Radius = minSpacing, eigener
+  `System.Random(placementSeed + i)` je Typ, deterministisch) und filtert jeden
+  Kandidaten billig→teuer: Wasser-Untergrenze (nur bei aktivem Wasser) →
+  Höhenband → Steigung (aus `SampleNormal`, zentrale Differenz aus vier
+  Nachbarhöhen). Überlebende werden zu `Placement` — Position, zufälliger Yaw,
+  optional an die Boden-Normale gekippt, zufällige Scale. `placementSeed` in
+  TerrainConfig ergänzt. Kompiliert sauber; noch nicht an den Presenter gehängt
+  (kommt im Panel-Block).
